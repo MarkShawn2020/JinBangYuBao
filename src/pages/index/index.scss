@@ -1,0 +1,234 @@
+// 首页样式
+.index-page {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.index-content {
+  padding-top: 20px;
+}
+
+// 横幅区域
+.banner-section {
+  padding: 0 16px 20px;
+  
+  .banner-card {
+    border-radius: 16px;
+    background: linear-gradient(135deg, #ff6b3d 0%, #ff8f3d 100%);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    
+    .banner-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .banner-text {
+      flex: 1;
+      
+      .banner-title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #fff;
+        line-height: 1.2;
+        display: block;
+      }
+      
+      .banner-subtitle {
+        font-size: 22px;
+        font-weight: bold;
+        color: #fff;
+        line-height: 1.2;
+        display: block;
+        margin-top: 4px;
+      }
+      
+      .banner-desc {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.9);
+        margin-top: 8px;
+        display: block;
+      }
+    }
+    
+    .banner-icons {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      
+      .banner-emoji {
+        font-size: 32px;
+        display: block;
+      }
+    }
+  }
+}
+
+// 登录区域
+.login-section {
+  padding: 0 16px 20px;
+  
+  .login-card {
+    background: linear-gradient(135deg, #ff8f3d 0%, #ffb84d 100%);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    
+    // 背景模糊效果
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+    }
+    
+    .login-tip {
+      color: #fff;
+      font-size: 14px;
+      line-height: 1.4;
+      margin-bottom: 16px;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .login-btn {
+      position: relative;
+      z-index: 1;
+      border-radius: 24px !important;
+      background: #fff !important;
+      color: #ff6b3d !important;
+      font-weight: bold;
+      height: 48px !important;
+      line-height: 48px !important;
+      border: none !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+// 功能网格
+.function-grid {
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+  
+  .function-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 8px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    
+    &:active {
+      transform: scale(0.95);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .function-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+      
+      .function-emoji {
+        font-size: 24px;
+        display: block;
+      }
+    }
+    
+    .function-title {
+      font-size: 13px;
+      color: #333;
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.2;
+      display: block;
+    }
+  }
+}
+
+// 资讯区域
+.news-section {
+  padding: 0 16px;
+  margin-bottom: 20px;
+  
+  .news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    
+    .news-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      display: block;
+    }
+    
+    .news-more {
+      font-size: 14px;
+      color: #666;
+      display: block;
+    }
+  }
+  
+  .news-list {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    
+    .news-item {
+      padding: 16px;
+      border-bottom: 1px solid #f5f5f5;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      .news-item-title {
+        font-size: 15px;
+        color: #333;
+        line-height: 1.4;
+        margin-bottom: 8px;
+        display: block;
+        font-weight: 500;
+      }
+      
+      .news-item-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        .news-item-source {
+          font-size: 12px;
+          color: #999;
+          display: block;
+        }
+        
+        .news-item-date {
+          font-size: 12px;
+          color: #999;
+          display: block;
+        }
+      }
+    }
+  }
+}
