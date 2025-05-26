@@ -1,0 +1,33 @@
+.div-wrapper {
+  height: 64px;
+  left: 26px;
+  position: absolute;
+  top: 1095px;
+  width: 334px;
+}
+
+.div-wrapper .text-wrapper-5 {
+  color: #1f1c14;
+  font-family: "MiSans-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  left: 0;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 0;
+  width: 330px;
+}
+
+.div-wrapper .text-wrapper-6 {
+  color: var(--x-9ea-1b-2);
+  font-family: "MiSans-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  left: 0;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 48px;
+  width: 311px;
+}

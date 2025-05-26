@@ -1,0 +1,96 @@
+.frame {
+  align-items: flex-start;
+  display: flex;
+  gap: 48px;
+  left: 46px;
+  overflow-x: scroll;
+  position: absolute;
+  top: 648px;
+  width: 283px;
+}
+
+.frame .div-2 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.frame .frame-wrapper-2 {
+  align-items: center;
+  border: 1px solid;
+  border-color: transparent;
+  border-radius: 50px;
+  display: flex;
+  gap: 10px;
+  height: 60px;
+  overflow: hidden;
+  padding: 15px;
+  position: relative;
+  width: 60px;
+}
+
+.frame .div-3 {
+  height: 40px;
+  margin-bottom: -5.00px;
+  margin-right: -10.00px;
+  margin-top: -5.00px;
+  position: relative;
+  width: 40px;
+}
+
+.frame .text-wrapper-7 {
+  color: #1f1c14;
+  font-family: "MiSans-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.14px;
+  line-height: 20px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.frame .div-4 {
+  border: 1px solid;
+  border-color: transparent;
+  border-radius: 50px;
+  height: 60px;
+  position: relative;
+  width: 60px;
+}
+
+.frame .frame-wrapper-3 {
+  align-items: flex-start;
+  border: 1px solid;
+  border-color: transparent;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 60px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 16px;
+  position: relative;
+  width: 60px;
+}
+
+.frame .div-5 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: -5.00px;
+  margin-right: -10.00px;
+  margin-top: -5.00px;
+  position: relative;
+}
+
+.frame::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}

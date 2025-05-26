@@ -11,12 +11,14 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
-  plugins: [],
+  plugins: [
+    '@tarojs/plugin-html'
+  ],
   defineConstants: {
   },
   copy: {
     patterns: [
-      { from: 'src/img/', to: 'dist/img/' }, // 假设你的图片在 src/img/image.png
+      { from: 'src/assets/', to: 'dist/assets/' },
     ],
     options: {
     }

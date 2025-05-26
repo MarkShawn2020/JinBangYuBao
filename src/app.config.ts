@@ -1,6 +1,7 @@
 export default defineAppConfig({
   pages: [
-    'pages/index2/index',
+    'pages/index/index',
+    'pages/index3/index',
     'pages/mock/index',
     'pages/ai/index', 
     'pages/volunteer/index',
@@ -19,7 +20,7 @@ export default defineAppConfig({
     borderStyle: 'black',
     list: [
       {
-        pagePath: 'pages/index2/index',
+        pagePath: 'pages/index/index',
         text: '首页',
         iconPath: 'assets/icons/home.png',
         selectedIconPath: 'assets/icons/home-active.png'
@@ -51,3 +52,4 @@ export default defineAppConfig({
     ]
   }
 })
+
