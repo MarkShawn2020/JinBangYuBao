@@ -9,8 +9,9 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
+  // overflow: auto;
   box-sizing: border-box;
+  padding-bottom: 150px;
 }
 
 /* 顶部标题 */
@@ -165,7 +166,7 @@
 /* 底部按钮 */
 .bottom-actions {
   position: fixed;
-  bottom: 140px; /* 为分享方式容器留出空间 */
+  bottom: 0px;
   left: 0;
   width: 100%;
   padding: 15px 20px;
@@ -236,6 +237,7 @@
 }
 
 .share-methods-grid {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

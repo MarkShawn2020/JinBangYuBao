@@ -382,11 +382,8 @@ const InvitePage: React.FC = () => {
         <Button className='share-btn' onClick={shareToFriend}>
           立即邀请
         </Button>
-        <Text className='alternate-share'>暂不分享邀请</Text>
-      </View>
-      
-      {/* 分享方式选择 */}
-      <View className='share-methods-container'>
+        {/* <Text className='alternate-share'>暂不分享邀请</Text> */}
+
         <Text className='share-methods-title'>更多分享方式</Text>
         
         <View className='share-methods-grid'>
