@@ -23,6 +23,12 @@ export interface LoginParams {
   code: string;
 }
 
+export interface WechatLoginParams {
+  code: string;
+  invite_code?: string;
+  channel_id?: string;
+}
+
 export interface LoginResponse {
   user: User;
   token: string;
@@ -68,6 +74,17 @@ class UserService {
    */
   async login(params: LoginParams): Promise<ApiResponse<LoginResponse>> {
     return httpClient.post('/auth/login', params, {
+      showLoading: true,
+      showError: true,
+    });
+  }
+
+  /**
+   * 微信小程序登录
+   * @param params 微信登录参数（code、邀请码等）
+   */
+  async wechatLogin(params: WechatLoginParams): Promise<ApiResponse<LoginResponse>> {
+    return httpClient.post('/wechat/login', params, {
       showLoading: true,
       showError: true,
     });
