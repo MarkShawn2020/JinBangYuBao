@@ -39,7 +39,7 @@ export const IconPicture = ({ className }: Props): JSX.Element => {
         x="97.146"
         y="87.295"
       >
-        <div className="div-7" xmlns="http://www.w3.org/1999/xhtml" />
+        <div className="div-7"  />
       </foreignObject>
 
       <rect
@@ -60,7 +60,7 @@ export const IconPicture = ({ className }: Props): JSX.Element => {
         x="110.203"
         y="106.88"
       >
-        <div className="div-7" xmlns="http://www.w3.org/1999/xhtml" />
+        <div className="div-7"  />
       </foreignObject>
 
       <rect

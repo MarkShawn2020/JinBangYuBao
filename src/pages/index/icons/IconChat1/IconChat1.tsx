@@ -39,7 +39,7 @@ export const IconChat1 = ({ className }: Props): JSX.Element => {
         x="21.9302"
         y="18.9827"
       >
-        <div className="div-7" xmlns="http://www.w3.org/1999/xhtml" />
+        <div className="div-7"  />
       </foreignObject>
 
       <path
@@ -56,7 +56,7 @@ export const IconChat1 = ({ className }: Props): JSX.Element => {
         x="27.5682"
         y="23.2113"
       >
-        <div className="div-7" xmlns="http://www.w3.org/1999/xhtml" />
+        <div className="div-7"  />
       </foreignObject>
 
       <path
@@ -74,7 +74,7 @@ export const IconChat1 = ({ className }: Props): JSX.Element => {
         x="31.7395"
         y="27.3921"
       >
-        <div className="div-7" xmlns="http://www.w3.org/1999/xhtml" />
+        <div className="div-7"  />
       </foreignObject>
 
       <rect
@@ -99,7 +99,7 @@ export const IconChat1 = ({ className }: Props): JSX.Element => {
         x="31.7393"
         y="31.6215"
       >
-        <div className="div-7" xmlns="http://www.w3.org/1999/xhtml" />
+        <div className="div-7"  />
       </foreignObject>
 
       <rect

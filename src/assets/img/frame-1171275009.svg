@@ -8,7 +8,7 @@
 <path d="M6 19.6016C6 17.3924 7.79086 15.6016 10 15.6016H26C28.2091 15.6016 30 17.3924 30 19.6016V33.6016C30 35.8107 28.2091 37.6016 26 37.6016H10C7.79086 37.6016 6 35.8107 6 33.6016V19.6016Z" fill="url(#paint0_linear_672_11431)"/>
 </g>
 <path d="M11.5 32.6C13.1667 33.2667 16.8 33.2 18 27.6C19.2 22 22.8333 21.9333 24.5 22.6" stroke="url(#paint1_linear_672_11431)" stroke-width="2" stroke-linecap="round"/>
-<foreignObject x="-38" y="-37.3984" width="112" height="106"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(25px);clip-path:url(#bgblur_0_672_11431_clip_path);height:100%;width:100%"></div></foreignObject><rect data-figma-bg-blur-radius="50" x="12" y="12.6016" width="12" height="6" rx="3" fill="white" fill-opacity="0.35"/>
+<foreignObject x="-38" y="-37.3984" width="112" height="106"><div  style="backdrop-filter:blur(25px);clip-path:url(#bgblur_0_672_11431_clip_path);height:100%;width:100%"></div></foreignObject><rect data-figma-bg-blur-radius="50" x="12" y="12.6016" width="12" height="6" rx="3" fill="white" fill-opacity="0.35"/>
 </g>
 <defs>
 <filter id="filter0_i_672_11431" x="2" y="15.6016" width="28" height="22" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
