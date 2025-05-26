@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Button, Image } from '@tarojs/components';
 import Taro, { useShareAppMessage, useShareTimeline } from '@tarojs/taro';
 import { userService, logger } from '../../services';
+import QRCode from 'qrcode';
 
 // 引入组件（避免使用相对导入方式）
 const CountdownTimer = require('./components/CountdownTimer').default;
@@ -260,23 +261,56 @@ const share = () => {
   const showQrCode = () => {
     logger.info('用户请求查看邀请二维码');
     
-    // 假设二维码图片已生成并保存在服务器上
-    // 实际实现可能需要调用后端API生成二维码或使用前端库
-    Taro.showModal({
-      title: '邀请二维码',
-      content: '您可以保存该二维码，分享给好友扫码加入',
-      confirmText: '查看二维码',
-      success: (res) => {
-        if (res.confirm) {
-          // 实际应用中，这里可能会打开一个包含二维码的页面
-          // 或者直接使用Taro.previewImage预览二维码图片
+    // 显示加载提示
+    Taro.showLoading({ title: '生成二维码中...' });
+    
+    // 获取邀请信息
+    const userInfo = Taro.getStorageSync('userInfo');
+    const userId = userInfo ? userInfo.id : '';
+    
+    // 构造邀请链接
+    const inviteLink = inviteCode
+      ? `https://jinbangyubao.com/invite?code=${inviteCode}&user_id=${userId}`
+      : `https://jinbangyubao.com/invite?user_id=${userId}`;
+    
+    // 使用 qrcode 库生成二维码（Data URL）
+    QRCode.toDataURL(inviteLink, {
+      errorCorrectionLevel: 'H',
+      margin: 1,
+      width: 300,
+      color: {
+        dark: '#000000',
+        light: '#FFFFFF'
+      }
+    })
+    .then(dataUrl => {
+      logger.info('邀请二维码生成成功');
+      Taro.hideLoading();
+      
+      // 预览二维码图片
+      Taro.previewImage({
+        current: dataUrl,
+        urls: [dataUrl],
+        success: () => {
+          logger.info('用户查看了邀请二维码');
+        },
+        fail: (err) => {
+          logger.error('预览二维码失败', { err });
           Taro.showToast({
-            title: '二维码功能开发中',
-            icon: 'none',
-            duration: 2000
+            title: '预览失败，请重试',
+            icon: 'none'
           });
         }
-      }
+      });
+    })
+    .catch(err => {
+      logger.error('生成二维码失败', { err });
+      Taro.hideLoading();
+      
+      Taro.showToast({
+        title: '生成二维码失败，请重试',
+        icon: 'none'
+      });
     });
   };
 
