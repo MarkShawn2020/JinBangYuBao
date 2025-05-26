@@ -99,7 +99,7 @@ export const FrameWrapper = (): JSX.Element => {
                   userService.wechatLogin({
                     code: res.code,
                     // 可选参数
-                    invite_code: '',
+                    invite_code: null,
                     channel_id: 'wechat_miniprogram'
                   }).then(response => {
                     // 处理登录成功

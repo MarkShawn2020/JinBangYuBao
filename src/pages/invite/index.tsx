@@ -169,6 +169,122 @@ const InvitePage: React.FC = () => {
       icon: 'none'
     });
   };
+  
+  // 分享到微信好友
+  const shareToWechatFriend = () => {
+    logger.info('用户尝试分享到微信好友');
+    // 在小程序环境中，通过Taro API调用系统分享
+    if (Taro.getEnv() === Taro.ENV_TYPE.WEAPP) {
+      Taro.showShareMenu({
+        withShareTicket: true,
+        showShareItems: ['shareAppMessage']
+      });
+      Taro.showToast({
+        title: '请点击右上角的分享按钮',
+        icon: 'none',
+        duration: 2000
+      });
+    } else {
+      // 在H5环境中，提示用户复制链接
+      Taro.showModal({
+        title: '分享提示',
+        content: '当前环境不支持直接分享到微信，请复制链接后手动分享',
+        confirmText: '复制链接',
+        success: (res) => {
+          if (res.confirm) {
+            copyInviteLink();
+          }
+        }
+      });
+    }
+  };
+  
+  // 分享到朋友圈
+  const shareToTimeline = () => {
+    logger.info('用户尝试分享到朋友圈');
+    // 在小程序环境中，通过Taro API调用系统分享
+    if (Taro.getEnv() === Taro.ENV_TYPE.WEAPP) {
+      Taro.showShareMenu({
+        withShareTicket: true,
+        showShareItems: ['shareTimeline']
+      });
+      Taro.showToast({
+        title: '请点击右上角的分享按钮',
+        icon: 'none',
+        duration: 2000
+      });
+    } else {
+      // 在H5环境中，提示用户复制链接
+      Taro.showModal({
+        title: '分享提示',
+        content: '当前环境不支持直接分享到朋友圈，请复制链接后手动分享',
+        confirmText: '复制链接',
+        success: (res) => {
+          if (res.confirm) {
+            copyInviteLink();
+          }
+        }
+      });
+    }
+  };
+  
+  // 分享到QQ
+  const shareToQQ = () => {
+    logger.info('用户尝试分享到QQ');
+    // QQ小程序或H5环境
+    Taro.showModal({
+      title: '分享提示',
+      content: '当前环境不支持直接分享到QQ，请复制链接后手动分享',
+      confirmText: '复制链接',
+      success: (res) => {
+        if (res.confirm) {
+          copyInviteLink();
+        }
+      }
+    });
+  };
+  
+  // 复制邀请链接
+  const copyInviteLink = () => {
+    logger.info('用户复制邀请链接');
+    // 构建邀请链接 - 实际链接需要根据应用环境确定
+    const inviteLink = `https://jinbangyubao.com/invite?code=${inviteCode}`;
+    
+    Taro.setClipboardData({
+      data: inviteLink,
+      success: () => {
+        Taro.showToast({
+          title: '邀请链接已复制',
+          icon: 'success',
+          duration: 2000
+        });
+      }
+    });
+  };
+  
+  // 显示二维码
+  const showQrCode = () => {
+    logger.info('用户请求查看邀请二维码');
+    
+    // 假设二维码图片已生成并保存在服务器上
+    // 实际实现可能需要调用后端API生成二维码或使用前端库
+    Taro.showModal({
+      title: '邀请二维码',
+      content: '您可以保存该二维码，分享给好友扫码加入',
+      confirmText: '查看二维码',
+      success: (res) => {
+        if (res.confirm) {
+          // 实际应用中，这里可能会打开一个包含二维码的页面
+          // 或者直接使用Taro.previewImage预览二维码图片
+          Taro.showToast({
+            title: '二维码功能开发中',
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      }
+    });
+  };
 
   // 查看活动规则
   const viewRules = () => {
@@ -250,7 +366,73 @@ const InvitePage: React.FC = () => {
         </Button>
         <Text className='alternate-share'>暂不分享邀请</Text>
       </View>
-
+      
+      {/* 分享方式选择 */}
+      <View className='share-methods-container'>
+        <Text className='share-methods-title'>更多分享方式</Text>
+        
+        <View className='share-methods-grid'>
+          {/* 微信好友 */}
+          <View className='share-method-item' onClick={shareToWechatFriend}>
+            <View className='share-icon-wrapper wechat-color'>
+              <Image 
+                className='share-icon' 
+                src='../../assets/img/share/wechat_friend.png' 
+                mode='aspectFit'
+              />
+            </View>
+            <Text className='share-method-name'>微信好友</Text>
+          </View>
+          
+          {/* 朋友圈 */}
+          <View className='share-method-item' onClick={shareToTimeline}>
+            <View className='share-icon-wrapper timeline-color'>
+              <Image 
+                className='share-icon' 
+                src='../../assets/img/share/wechat_moments.png' 
+                mode='aspectFit'
+              />
+            </View>
+            <Text className='share-method-name'>朋友圈</Text>
+          </View>
+          
+          {/* QQ */}
+          <View className='share-method-item' onClick={shareToQQ}>
+            <View className='share-icon-wrapper qq-color'>
+              <Image 
+                className='share-icon' 
+                src='../../assets/img/share/qq.png' 
+                mode='aspectFit'
+              />
+            </View>
+            <Text className='share-method-name'>QQ好友</Text>
+          </View>
+          
+          {/* 复制链接 */}
+          <View className='share-method-item' onClick={copyInviteLink}>
+            <View className='share-icon-wrapper link-color'>
+              <Image 
+                className='share-icon' 
+                src='../../assets/img/share/copy_link.png' 
+                mode='aspectFit'
+              />
+            </View>
+            <Text className='share-method-name'>复制链接</Text>
+          </View>
+          
+          {/* 二维码 */}
+          <View className='share-method-item' onClick={showQrCode}>
+            <View className='share-icon-wrapper qrcode-color'>
+              <Image 
+                className='share-icon' 
+                src='../../assets/img/share/qrcode.png' 
+                mode='aspectFit'
+              />
+            </View>
+            <Text className='share-method-name'>二维码</Text>
+          </View>
+        </View>
+      </View>
 
     </View>
   );
