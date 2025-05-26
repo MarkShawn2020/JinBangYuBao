@@ -90,7 +90,7 @@ export const FrameWrapper = (): JSX.Element => {
             success (res) {
               if (res.code) {
                 //发起网络请求
-                console.log("登录成功：", res.code)
+                console.log("登录成功了了：", res.code)
                 
 
               } else {

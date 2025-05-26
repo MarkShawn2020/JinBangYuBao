@@ -68,8 +68,15 @@ export default class Index extends Component<PropsWithChildren> {
 
   // 处理登录点击
   handleLogin = () => {
-    Taro.navigateTo({
-      url: '/pages/login/index'
+    Taro.login({
+      success (res) {
+        if (res.code) {
+          //发起网络请求
+          console.log("登录成功了：", res.code)
+        } else {
+          console.log('登录失败了：' + res.errMsg)
+        }
+      }
     })
   }
 
