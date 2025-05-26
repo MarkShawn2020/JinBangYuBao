@@ -83,7 +83,9 @@ export const FrameWrapper = (): JSX.Element => {
 
         <div className="rectangle-3" />
 
-        <div className="text-wrapper-24">点击登录</div>
+        <div className="text-wrapper-24" onClick={() => {
+          console.log("test click")
+        }}>点击登录</div>
       </div>
     </div>
   );
