@@ -5,7 +5,8 @@ export default defineAppConfig({
     'pages/mock/index',
     'pages/ai/index', 
     'pages/volunteer/index',
-    'pages/profile/index'
+    'pages/profile/index',
+    'pages/invite/index'
   ],
   window: {
     backgroundTextStyle: 'light',

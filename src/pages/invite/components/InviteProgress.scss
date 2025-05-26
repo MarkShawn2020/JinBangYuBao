@@ -1,0 +1,51 @@
+.invite-progress {
+  width: 100%;
+  padding: 10px 0 20px;
+}
+
+.progress-bar {
+  height: 8px;
+  background-color: #f2f2f2;
+  border-radius: 4px;
+  position: relative;
+  margin: 10px 0 15px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff4757, #ff6b6b);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.progress-marker {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #f2f2f2;
+  border: 2px solid #e0e0e0;
+  border-radius: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.progress-marker.active {
+  background-color: #ff4757;
+  border-color: #ff4757;
+}
+
+.marker-value {
+  font-size: 10px;
+  color: #999;
+  position: absolute;
+  top: 20px;
+}
+
+.progress-marker.active .marker-value {
+  color: #ff4757;
+  font-weight: 500;
+}

@@ -1,0 +1,28 @@
+.countdown-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-unit {
+  background-color: #ff6347;
+  border-radius: 4px;
+  min-width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-value {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.timer-separator {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 4px;
+}

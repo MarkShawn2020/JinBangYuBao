@@ -1,0 +1,280 @@
+/* 邀请页面样式 */
+
+.invite-page {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* 顶部标题 */
+.invite-header {
+  width: 100%;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  position: relative;
+  padding: 10px 0;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.header-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* 活动横幅 */
+.invite-banner {
+  width: 100%;
+  background: linear-gradient(135deg, #ff6b6b, #ff4757);
+  color: #fff;
+  padding: 20px 15px;
+  border-radius: 0 0 12px 12px;
+  box-sizing: border-box;
+}
+
+.banner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.year-label {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.banner-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.reward-amount {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+/* 倒计时 */
+.countdown-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.countdown-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 8px;
+}
+
+/* 邀请进度 */
+.invite-progress-container {
+  padding: 15px 20px;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+.progress-title {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* 奖励部分 */
+.reward-section {
+  padding: 15px 20px;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.reward-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rule-link {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.rule-text {
+  font-size: 12px;
+  color: #999;
+}
+
+/* 邀请记录 */
+.invite-record-section {
+  padding: 15px 20px;
+  background-color: #fff;
+  margin-bottom: 80px; /* 为底部按钮留出空间 */
+}
+
+.record-list {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+}
+
+.record-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.record-count {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ff4757;
+  margin-bottom: 5px;
+}
+
+.record-amount {
+  font-size: 14px;
+  color: #333;
+}
+
+.record-label {
+  font-size: 12px;
+  color: #999;
+}
+
+/* 底部按钮 */
+.bottom-actions {
+  position: fixed;
+  bottom: 60px; /* 留出TabBar的高度 */
+  left: 0;
+  width: 100%;
+  padding: 15px 20px;
+  background-color: #fff;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.copy-code-btn {
+  width: 90%;
+  height: 44px;
+  background-color: #fff;
+  border: 1px solid #ff4757;
+  color: #ff4757;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 22px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.share-btn {
+  width: 90%;
+  height: 44px;
+  background-color: #ff4757;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 22px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alternate-share {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* 底部TabBar */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid #f2f2f2;
+}
+
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 0;
+  flex: 1;
+}
+
+.tab-icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 2px;
+}
+
+.tab-text {
+  font-size: 10px;
+  color: #999;
+}
+
+.tab-item.active .tab-text {
+  color: #ff4757;
+}
+
+/* 响应式适配 */
+@media screen and (max-width: 320px) {
+  .banner-title {
+    font-size: 16px;
+  }
+  
+  .reward-amount {
+    font-size: 20px;
+  }
+  
+  .section-title {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .invite-page {
+    max-width: 500px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .banner-title {
+    font-size: 20px;
+  }
+  
+  .reward-amount {
+    font-size: 24px;
+  }
+}

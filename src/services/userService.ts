@@ -58,6 +58,29 @@ export interface Order {
   createdAt: string;
 }
 
+export interface InviteInfo {
+  inviteCode: string;
+  invitedUsers: Array<{
+    id: string;
+    nickname: string;
+    avatar: string;
+    createdAt: string;
+    isVip: boolean;
+  }>;
+  rewards: Array<{
+    id: string;
+    type: string;
+    amount: number;
+    status: string;
+    createdAt: string;
+  }>;
+  statistics: {
+    totalInvited: number;
+    totalRewards: number;
+    convertCount: number;
+  };
+}
+
 class UserService {
   /**
    * 发送验证码
@@ -170,6 +193,26 @@ class UserService {
    */
   async getInviteCode(): Promise<ApiResponse<{ inviteCode: string }>> {
     return httpClient.get('/user/invite-code', {}, {
+      showError: true,
+    });
+  }
+  
+  /**
+   * 获取完整邀请信息，包含已邀请用户和奖励
+   */
+  async getInviteInfo(): Promise<ApiResponse<InviteInfo>> {
+    return httpClient.get('/user/invite-info', {}, {
+      showError: true,
+    });
+  }
+  
+  /**
+   * 领取邀请奖励
+   * @param rewardId 奖励ID
+   */
+  async claimInviteReward(rewardId: string): Promise<ApiResponse<{ success: boolean }>> {
+    return httpClient.post('/user/claim-reward', { rewardId }, {
+      showLoading: true,
       showError: true,
     });
   }

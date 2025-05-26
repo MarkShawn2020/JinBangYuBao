@@ -1,0 +1,259 @@
+import React, { useState, useEffect } from 'react';
+import { View, Text, Button, Image } from '@tarojs/components';
+import Taro from '@tarojs/taro';
+import { userService, logger } from '../../services';
+
+// 引入组件（避免使用相对导入方式）
+const CountdownTimer = require('./components/CountdownTimer').default;
+const RewardItem = require('./components/RewardItem').default;
+const InviteProgress = require('./components/InviteProgress').default;
+import './index.scss';
+
+const InvitePage: React.FC = () => {
+  // 状态管理
+  const [inviteCode, setInviteCode] = useState<string>('');
+  const [invitedCount, setInvitedCount] = useState<number>(0);
+  const [totalReward, setTotalReward] = useState<number>(0);
+  const [inviteRecord, setInviteRecord] = useState<{count: number, amount: number}[]>([
+    { count: 7, amount: 1250 },
+    { count: 5, amount: 900 },
+    { count: 3, amount: 600 }
+  ]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  // 奖励列表数据
+  const rewardList = [
+    { 
+      id: 1, 
+      title: '成功邀请 3 位新用户', 
+      reward: '得 100 积分', 
+      completed: false 
+    },
+    { 
+      id: 2, 
+      title: '成功邀请 5 位新用户', 
+      reward: '得 200 积分', 
+      completed: false 
+    },
+    { 
+      id: 3, 
+      title: '成功邀请 7 位及以上新用户', 
+      reward: '得 300 积分', 
+      completed: false 
+    },
+    { 
+      id: 4, 
+      title: '邀请 10 位新用户', 
+      reward: '额外得平台积分*200 积分', 
+      completed: false,
+      highlighted: true
+    },
+    { 
+      id: 5, 
+      title: '成功邀请 2 位好友下单', 
+      reward: '返现平台积分*50 积分', 
+      completed: false,
+      highlighted: true 
+    },
+    { 
+      id: 6, 
+      title: '成功邀请 3 位好友下单', 
+      reward: '额外得平台积分*1000 积分', 
+      completed: false,
+      highlighted: true 
+    }
+  ];
+
+  // 页面加载时获取邀请信息
+  useEffect(() => {
+    logger.info('邀请页面加载');
+    fetchInviteInfo();
+    
+    // 注册分享能力
+    Taro.showShareMenu({
+      withShareTicket: true,
+      showShareItems: ['shareAppMessage', 'shareTimeline']
+    });
+    
+    return () => {
+      logger.info('邀请页面卸载');
+    };
+  }, []);
+
+  // 获取邀请信息
+  const fetchInviteInfo = async () => {
+    setLoading(true);
+    try {
+      logger.info('获取邀请信息');
+      
+      // 调用更完整的邀请信息 API
+      const res = await userService.getInviteInfo();
+      
+      if (res.code === 0 && res.data) {
+        const { inviteCode, statistics, invitedUsers, rewards } = res.data;
+        
+        // 设置邀请码
+        setInviteCode(inviteCode || '');
+        
+        // 设置邀请统计信息
+        if (statistics) {
+          setInvitedCount(statistics.totalInvited || 0);
+          setTotalReward(statistics.totalRewards || 0);
+          
+          // 更新奖励状态
+          updateRewardStatus(statistics.totalInvited || 0);
+        }
+        
+        // 设置邀请记录
+        if (rewards && rewards.length > 0) {
+          // 这里可以处理奖励信息，但当前示例仅展示静态数据
+        }
+        
+        logger.info('邀请信息获取成功', { 
+          invitedCount: statistics?.totalInvited || 0,
+          totalReward: statistics?.totalRewards || 0 
+        });
+      } else {
+        Taro.showToast({
+          title: '获取邀请信息失败',
+          icon: 'none'
+        });
+      }
+    } catch (error) {
+      logger.error('获取邀请信息失败', error);
+      Taro.showToast({
+        title: '网络异常，请重试',
+        icon: 'none'
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // 更新奖励状态
+  const updateRewardStatus = (count: number) => {
+    const updatedList = rewardList.map(item => {
+      // 安全地提取数字
+      const matches = item.title.match(/\d+/);
+      let threshold = matches ? parseInt(matches[0]) : 0;
+      return {
+        ...item,
+        completed: count >= threshold
+      };
+    });
+    // 这里只是示例，实际组件中不会直接修改rewardList
+  };
+
+  // 复制邀请码
+  const copyInviteCode = () => {
+    if (inviteCode && inviteCode.trim() !== '') {
+      Taro.setClipboardData({
+        data: inviteCode,
+        success: () => {
+          Taro.showToast({
+            title: '邀请码已复制',
+            icon: 'success'
+          });
+          logger.info('用户复制了邀请码', { inviteCode });
+        }
+      });
+    }
+  };
+
+  // 分享给好友
+  const shareToFriend = () => {
+    // 在实际小程序中，会调用Taro.showShareMenu或在onShareAppMessage中处理
+    logger.info('用户点击了立即邀请按钮');
+    Taro.showToast({
+      title: '请点击右上角分享',
+      icon: 'none'
+    });
+  };
+
+  // 查看活动规则
+  const viewRules = () => {
+    Taro.showModal({
+      title: '活动规则',
+      content: '1. 每成功邀请1位新用户注册并使用，可获得相应奖励\n2. 邀请奖励可累计，达到不同等级获得不同奖励\n3. 活动期间邀请的用户才计入统计\n4. 最终解释权归平台所有',
+      showCancel: false
+    });
+  };
+
+  return (
+    <View className='invite-page'>
+      {/* 顶部标题 */}
+      <View className='invite-header'>
+        <Text className='header-title'>邀请好友</Text>
+      </View>
+
+      {/* 活动横幅 */}
+      <View className='invite-banner'>
+        <View className='banner-content'>
+          <Text className='year-label'>2025 高考加油</Text>
+          <Text className='banner-title'>喊朋友填志愿，你就可以赚</Text>
+          <Text className='reward-amount'>最高 1250 元红包</Text>
+          
+          {/* 倒计时 */}
+          <View className='countdown-container'>
+            <Text className='countdown-label'>本轮活动剩余时间</Text>
+            <CountdownTimer days={23} hours={59} minutes={10} />
+          </View>
+        </View>
+      </View>
+
+      {/* 邀请进度 */}
+      <View className='invite-progress-container'>
+        <Text className='progress-title'>已邀请 {invitedCount} 人</Text>
+        <InviteProgress current={invitedCount} max={10} />
+      </View>
+
+      {/* 邀请奖励列表 */}
+      <View className='reward-section'>
+        <Text className='section-title'>邀请奖励</Text>
+        <View className='reward-list'>
+          {rewardList.map(item => (
+            <RewardItem 
+              key={item.id}
+              title={item.title}
+              reward={item.reward}
+              completed={item.completed}
+              highlighted={item.highlighted}
+            />
+          ))}
+        </View>
+        <View className='rule-link' onClick={viewRules}>
+          <Text className='rule-text'>查看活动规则</Text>
+        </View>
+      </View>
+
+      {/* 邀请记录 */}
+      <View className='invite-record-section'>
+        <Text className='section-title'>邀请记录</Text>
+        <View className='record-list'>
+          {inviteRecord.map((record, index) => (
+            <View key={index} className='record-item'>
+              <Text className='record-count'>{record.count}</Text>
+              <Text className='record-amount'>{record.amount}</Text>
+              <Text className='record-label'>{index === 0 ? '元最高红包' : index === 1 ? '元现金红包' : '元积分红包'}</Text>
+            </View>
+          ))}
+        </View>
+      </View>
+
+      {/* 底部按钮 */}
+      <View className='bottom-actions'>
+        <Button className='copy-code-btn' onClick={copyInviteCode}>
+          复制邀请码
+        </Button>
+        <Button className='share-btn' onClick={shareToFriend}>
+          立即邀请
+        </Button>
+        <Text className='alternate-share'>暂不分享邀请</Text>
+      </View>
+
+
+    </View>
+  );
+};
+
+export default InvitePage;
