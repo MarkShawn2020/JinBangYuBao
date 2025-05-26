@@ -201,7 +201,7 @@ export class Screen extends React.Component {
 
             <div className="flex flex-col w-[163px] h-16 items-start gap-[6.4px] px-4 py-3 absolute top-[569px] left-[17px] rounded-[10.24px] overflow-hidden shadow-[0px_6.4px_16px_#38383808] [background:linear-gradient(90deg,rgba(255,255,255,1)_0%,rgba(234,255,253,1)_100%)]">
               <div className="inline-flex items-center gap-[12.8px] relative flex-[0_0_auto]">
-                <IconChat1 className="!relative !w-[73.54px] !h-[63.55px] !mt-[-11.55px] !mb-[-12.00px] !ml-[-15.03px]" />
+                <IconChat1 className="relative" />
                 <div className="relative w-fit [font-family:'MiSans-Regular',Helvetica] font-normal text-text-main text-sm tracking-[0] leading-[19.6px] whitespace-nowrap">
                   状元1对1
                 </div>
