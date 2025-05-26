@@ -1,0 +1,20 @@
+@use 'tailwindcss/base' as *;
+@use 'tailwindcss/components' as *;
+@use 'tailwindcss/utilities' as *;
+// 不使用 sass 就这么写
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
+
+
+@layer components {
+    .all-\[unset\] {
+      all: unset;
+    }
+  }
+  
+  :root {
+    --text-main: rgba(31, 28, 20, 1);
+    --x-9ea-1b-2: rgba(158, 161, 178, 1);
+  }
+  

@@ -1,3 +1,5 @@
+import { UnifiedWebpackPluginV5 } from 'weapp-tailwindcss/webpack'
+
 const config = {
   projectName: 'jinbangyubao',
   date: '2025-5-26',
@@ -14,6 +16,7 @@ const config = {
   },
   copy: {
     patterns: [
+      { from: 'src/img/', to: 'dist/img/' }, // 假设你的图片在 src/img/image.png
     ],
     options: {
     }
@@ -43,6 +46,20 @@ const config = {
           namingPattern: 'module', // 转换模式，取值为 global/module
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
+      },
+      webpackChain(chain, webpack) {
+        chain.merge({
+          plugin: {
+            install: {
+              plugin: UnifiedWebpackPluginV5,
+              args: [{
+                appType: 'taro',
+                // 下面个配置，会开启 rem -> rpx 的转化
+                rem2rpx: true
+              }]
+            }
+          }
+        })
       }
     }
   },

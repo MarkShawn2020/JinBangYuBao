@@ -1,0 +1,1 @@
+export { IconChat } from "./IconChat";
