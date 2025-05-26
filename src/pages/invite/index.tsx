@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Button, Image } from '@tarojs/components';
-import Taro from '@tarojs/taro';
+import Taro, { useShareAppMessage } from '@tarojs/taro';
 import { userService, logger } from '../../services';
 
 // 引入组件（避免使用相对导入方式）
@@ -79,6 +79,24 @@ const InvitePage: React.FC = () => {
       logger.info('邀请页面卸载');
     };
   }, []);
+  
+  // 配置页面分享信息
+  useShareAppMessage(() => {
+    // 从存储中获取用户ID
+    const userInfo = Taro.getStorageSync('userInfo');
+    const userId = userInfo ? userInfo.id : '';
+    
+    logger.info('用户进行了页面分享', { userId });
+    
+    // 构造分享路径
+    const path = `/pages/invite/index?user_id=${userId}&channel_id=default`;
+    
+    return {
+      title: '高考志愿填报神器，点击领取你的必备利器！',
+      path: path,
+      imageUrl: '../../assets/img/share/invite_share_image.png'
+    };
+  });
 
   // 获取邀请信息
   const fetchInviteInfo = async () => {
