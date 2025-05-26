@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import Taro from "@tarojs/taro";
 
 export const FrameWrapper = (): JSX.Element => {
   return (
@@ -85,6 +86,17 @@ export const FrameWrapper = (): JSX.Element => {
 
         <div className="text-wrapper-24" onClick={() => {
           console.log("test click")
+          Taro.login({
+            success (res) {
+              if (res.code) {
+                //发起网络请求
+                console.log("登录成功：", res.code)
+                
+              } else {
+                console.log('登录失败！' + res.errMsg)
+              }
+            }
+          })
         }}>点击登录</div>
       </div>
     </div>
