@@ -186,36 +186,7 @@ const InvitePage: React.FC = () => {
       title: '请点击右上角分享',
       icon: 'none'
     });
-  };
-  
-  // 分享到微信好友
-  const shareToWechatFriend = () => {
-    logger.info('用户尝试分享到微信好友');
-    // 在小程序环境中，通过Taro API调用系统分享
-    if (Taro.getEnv() === Taro.ENV_TYPE.WEAPP) {
-      Taro.showShareMenu({
-        withShareTicket: true,
-        showShareItems: ['shareAppMessage']
-      });
-      Taro.showToast({
-        title: '请点击右上角的分享按钮',
-        icon: 'none',
-        duration: 2000
-      });
-    } else {
-      // 在H5环境中，提示用户复制链接
-      Taro.showModal({
-        title: '分享提示',
-        content: '当前环境不支持直接分享到微信，请复制链接后手动分享',
-        confirmText: '复制链接',
-        success: (res) => {
-          if (res.confirm) {
-            copyInviteLink();
-          }
-        }
-      });
-    }
-  };
+  }; 
   
   // 分享到朋友圈
   const shareToTimeline = () => {
@@ -387,17 +358,21 @@ const InvitePage: React.FC = () => {
         <Text className='share-methods-title'>更多分享方式</Text>
         
         <View className='share-methods-grid'>
-          {/* 微信好友 */}
-          <View className='share-method-item' onClick={shareToWechatFriend}>
-            <View className='share-icon-wrapper wechat-color'>
-              <Image 
-                className='share-icon' 
-                src='../../assets/img/share/wechat_friend.png' 
-                mode='aspectFit'
-              />
-            </View>
-            <Text className='share-method-name'>微信好友</Text>
-          </View>
+          {/* 微信好友 - 小程序中使用Button触发分享 */}
+          
+            <Button 
+              className='share-method-item share-button' 
+              openType='share'
+            >
+              <View className='share-icon-wrapper wechat-color'>
+                <Image 
+                  className='share-icon' 
+                  src='../../assets/img/share/wechat_friend.png' 
+                  mode='aspectFit'
+                />
+              </View>
+              <Text className='share-method-name'>微信好友</Text>
+            </Button>
           
           {/* 朋友圈 */}
           <View className='share-method-item' onClick={shareToTimeline}>

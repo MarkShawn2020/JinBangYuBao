@@ -294,6 +294,27 @@
   background-color: #5352ed;
 }
 
+/* 微信分享按钮重置样式 */
+.share-method-item.share-button {
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  margin: 0 !important;
+  line-height: normal !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  font-weight: normal !important;
+  text-align: center !important;
+  overflow: visible !important;
+  
+  &::after {
+    border: none !important;
+    outline: none !important;
+    border-radius: 0 !important;
+  }
+}
+
 /* 底部TabBar */
 .tab-bar {
   position: fixed;
