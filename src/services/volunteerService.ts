@@ -96,7 +96,8 @@ class VolunteerService {
   /**
    * 获取志愿表列表
    */
-  async getVolunteerForms(page: number = 1, pageSize: number = 10): Promise<PaginatedResponse<VolunteerForm>> {
+  async getVolunteerForms(page: number = 1, pageSize: number = 10): Promise<ApiResponse<VolunteerForm[]>> {
+    // TODO: 后端返回数据结构需要对接，后续可能需要转换为 PaginatedResponse 类型
     return httpClient.get('/volunteer/forms', { page, pageSize }, {
       showError: true,
     });

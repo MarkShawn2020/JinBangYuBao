@@ -15,7 +15,7 @@ interface TaroRequestConfig {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
   timeout?: number;
   dataType?: string;
-  responseType?: string;
+  responseType?: 'text' | 'arraybuffer';
 }
 
 class HttpClient {

@@ -115,7 +115,8 @@ class SchoolService {
   /**
    * 搜索院校
    */
-  async searchSchools(params: SchoolSearchParams): Promise<PaginatedResponse<School>> {
+  async searchSchools(params: SchoolSearchParams): Promise<ApiResponse<School[]>> {
+    // TODO: 后端返回数据结构需要对接，后续可能需要转换为 PaginatedResponse 类型
     return httpClient.get('/schools/search', params, {
       showError: true,
     });
@@ -157,7 +158,8 @@ class SchoolService {
   /**
    * 搜索专业
    */
-  async searchMajors(params: MajorSearchParams): Promise<PaginatedResponse<Major>> {
+  async searchMajors(params: MajorSearchParams): Promise<ApiResponse<Major[]>> {
+    // TODO: 后端返回数据结构需要对接，后续可能需要转换为 PaginatedResponse 类型
     return httpClient.get('/majors/search', params, {
       showError: true,
     });
@@ -185,7 +187,8 @@ class SchoolService {
   /**
    * 搜索院校专业组合
    */
-  async searchSchoolMajors(params: SchoolMajorSearchParams): Promise<PaginatedResponse<SchoolMajor>> {
+  async searchSchoolMajors(params: SchoolMajorSearchParams): Promise<ApiResponse<SchoolMajor[]>> {
+    // TODO: 后端返回数据结构需要对接，后续可能需要转换为 PaginatedResponse 类型
     return httpClient.get('/school-majors/search', params, {
       showError: true,
     });
