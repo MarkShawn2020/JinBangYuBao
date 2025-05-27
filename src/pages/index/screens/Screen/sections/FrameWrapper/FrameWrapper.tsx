@@ -46,25 +46,28 @@ export class FrameWrapper extends Component<{}, IState> {
 
   fetchExamInfo = () => {
     logger.info('获取用户考试信息');
-    // 假设有一个获取考试信息的API
-    volunteerService.getUserExamInfo()
-      .then(response => {
-        if (response.data && response.data.score) {
-          // 用户有考试信息
-          this.setState({
-            hasExamInfo: true,
-            examInfo: response.data,
-            isLoading: false
-          });
-        } else {
-          // 用户没有考试信息
-          this.setState({ hasExamInfo: false, isLoading: false });
-        }
-      })
-      .catch(error => {
-        logger.error('获取考试信息失败', { error });
+    
+    // 从本地存储中获取考试信息
+    try {
+      const examInfo = Taro.getStorageSync('examInfo');
+      
+      if (examInfo && examInfo.score) {
+        // 用户有考试信息
+        logger.info('从本地读取考试信息成功');
+        this.setState({
+          hasExamInfo: true,
+          examInfo: examInfo,
+          isLoading: false
+        });
+      } else {
+        // 用户没有考试信息
+        logger.info('本地没有存储考试信息');
         this.setState({ hasExamInfo: false, isLoading: false });
-      });
+      }
+    } catch (error) {
+      logger.error('获取考试信息失败', { error });
+      this.setState({ hasExamInfo: false, isLoading: false });
+    }
   }
 
   handleLogin = () => {

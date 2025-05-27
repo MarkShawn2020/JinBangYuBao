@@ -10,7 +10,7 @@ interface IState {
   examBatch: string
   examType: string
   firstSubject: string
-  secondSubject: string
+  secondSubjects: string[]
   score: string
   rank: string
   scoreRange: string
@@ -26,10 +26,10 @@ export default class ExamInfo extends Component<{}, IState> {
     super(props)
     this.state = {
       province: '河南',
-      examBatch: '本科普通批',
-      examType: '本科普通批',
-      firstSubject: '物理',
-      secondSubject: '化学',
+      examBatch: '',
+      examType: '',
+      firstSubject: '',
+      secondSubjects: [],
       score: '',
       rank: '',
       scoreRange: '435~618',
@@ -80,10 +80,32 @@ export default class ExamInfo extends Component<{}, IState> {
   }
 
   handleSecondSubjectSelect = (subject: string) => {
+    const { secondSubjects } = this.state
     logger.info('Selected second subject:', subject)
+    
+    // 检查是否已经选择了这个科目
+    const index = secondSubjects.indexOf(subject)
+    let newSecondSubjects = [...secondSubjects]
+    
+    if (index > -1) {
+      // 如果已选择，则取消选择
+      newSecondSubjects.splice(index, 1)
+    } else {
+      // 如果未选择，且选择不超过2个，则添加
+      if (newSecondSubjects.length < 2) {
+        newSecondSubjects.push(subject)
+      } else {
+        // 如果已经选了2个，显示提示需要先取消选择
+        Taro.showToast({
+          title: '最多选择2门，请先取消选择一门',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    }
+    
     this.setState({ 
-      secondSubject: subject,
-      isSecondSubjectModalOpen: false
+      secondSubjects: newSecondSubjects
     })
   }
 
@@ -108,8 +130,33 @@ export default class ExamInfo extends Component<{}, IState> {
   }
 
   handleSubmit = () => {
-    logger.info('Submitting exam info:', this.state)
+    logger.info('提交高考信息');
+    
     // 表单验证
+    if (!this.state.examType) {
+      Taro.showToast({
+        title: '请选择报考批次',
+        icon: 'none'
+      })
+      return
+    }
+    
+    if (!this.state.firstSubject) {
+      Taro.showToast({
+        title: '请选择首选科目',
+        icon: 'none'
+      })
+      return
+    }
+    
+    if (this.state.secondSubjects.length !== 2) {
+      Taro.showToast({
+        title: '请选择2个再选科目',
+        icon: 'none'
+      })
+      return
+    }
+    
     if (!this.state.score) {
       Taro.showToast({
         title: '请输入高考成绩',
@@ -129,13 +176,52 @@ export default class ExamInfo extends Component<{}, IState> {
     // 保存数据并跳转
     Taro.showLoading({ title: '保存中...' })
     
-    // 模拟API调用
-    setTimeout(() => {
+    // 构建保存的考试信息对象
+    const examInfo = {
+      id: new Date().getTime().toString(), // 生成一个唯一ID
+      userId: Taro.getStorageSync('userInfo')?.id,
+      province: this.state.province,
+      examBatch: this.state.examType,
+      examType: this.state.examType,
+      firstSubject: this.state.firstSubject,
+      secondSubjects: this.state.secondSubjects,
+      score: parseInt(this.state.score, 10),
+      rank: parseInt(this.state.rank, 10),
+      rankRange: this.state.scoreRange,
+      percentile: 99, // 模拟数据，实际应由后端计算
+      year: 2024,
+      createTime: new Date().toISOString(),
+      updateTime: new Date().toISOString()
+    }
+    
+    // 保存到本地存储
+    try {
+      Taro.setStorageSync('examInfo', examInfo);
+      logger.info('高考信息保存成功', { examInfo });
+      
+      setTimeout(() => {
+        Taro.hideLoading()
+        Taro.showToast({
+          title: '保存成功',
+          icon: 'success',
+          duration: 1500,
+          success: () => {
+            // 成功后返回首页
+            setTimeout(() => {
+              Taro.navigateBack()
+            }, 1500)
+          }
+        })
+      }, 500)
+    } catch (error) {
       Taro.hideLoading()
-      Taro.navigateTo({
-        url: '/pages/volunteer/index'
+      logger.error('高考信息保存失败', { error });
+      Taro.showToast({
+        title: '保存失败，请重试',
+        icon: 'none',
+        duration: 2000
       })
-    }, 1000)
+    }
   }
 
   render() {
@@ -143,7 +229,7 @@ export default class ExamInfo extends Component<{}, IState> {
       province, 
       examType, 
       firstSubject, 
-      secondSubject, 
+      secondSubjects, 
       score, 
       rank, 
       scoreRange,
@@ -196,15 +282,17 @@ export default class ExamInfo extends Component<{}, IState> {
               <View className='value'>
                 <Text className='required'>需选择1门</Text>
                 <View className='tag-group'>
+                  {/* 物理选项 */}
                   <View 
-                    className={`tag-item selected`}
-                    onClick={() => this.setState({ isFirstSubjectModalOpen: true })}
+                    className={`tag-item ${firstSubject === '物理' ? 'selected' : ''}`}
+                    onClick={() => this.handleFirstSubjectSelect('物理')}
                   >
-                    {firstSubject}
+                    物理
                   </View>
+                  {/* 历史选项 */}
                   <View 
-                    className={`tag-item`}
-                    onClick={() => this.setState({ isFirstSubjectModalOpen: true })}
+                    className={`tag-item ${firstSubject === '历史' ? 'selected' : ''}`}
+                    onClick={() => this.handleFirstSubjectSelect('历史')}
                   >
                     历史
                   </View>
@@ -217,15 +305,34 @@ export default class ExamInfo extends Component<{}, IState> {
               <View className='value'>
                 <Text className='required'>需选择2门</Text>
                 <View className='tag-group'>
+                  {/* 化学选项 */}
                   <View 
-                    className={`tag-item selected`}
-                    onClick={() => this.setState({ isSecondSubjectModalOpen: true })}
+                    className={`tag-item ${secondSubjects.includes('化学') ? 'selected' : ''}`}
+                    onClick={() => this.handleSecondSubjectSelect('化学')}
                   >
-                    {secondSubject}
+                    化学
                   </View>
-                  <View className='tag-item'>生物</View>
-                  <View className='tag-item'>政治</View>
-                  <View className='tag-item'>地理</View>
+                  {/* 生物选项 */}
+                  <View 
+                    className={`tag-item ${secondSubjects.includes('生物') ? 'selected' : ''}`}
+                    onClick={() => this.handleSecondSubjectSelect('生物')}
+                  >
+                    生物
+                  </View>
+                  {/* 政治选项 */}
+                  <View 
+                    className={`tag-item ${secondSubjects.includes('政治') ? 'selected' : ''}`}
+                    onClick={() => this.handleSecondSubjectSelect('政治')}
+                  >
+                    政治
+                  </View>
+                  {/* 地理选项 */}
+                  <View 
+                    className={`tag-item ${secondSubjects.includes('地理') ? 'selected' : ''}`}
+                    onClick={() => this.handleSecondSubjectSelect('地理')}
+                  >
+                    地理
+                  </View>
                 </View>
               </View>
             </View>
@@ -233,26 +340,30 @@ export default class ExamInfo extends Component<{}, IState> {
             <View className='form-item'>
               <View className='label'>高考成绩</View>
               <View className='value'>
-                <AtInput
-                  name='score'
-                  type='number'
-                  placeholder='请输入分数'
-                  value={score}
-                  onChange={this.handleScoreChange}
-                />
+                <View className='custom-input-wrapper'>
+                  <input
+                    className='custom-input'
+                    type='number'
+                    placeholder='请输入分数'
+                    value={score}
+                    onChange={(e) => this.handleScoreChange(e.target.value)}
+                  />
+                </View>
               </View>
             </View>
             
             <View className='form-item'>
               <View className='label'>高考位次</View>
               <View className='value'>
-                <AtInput
-                  name='rank'
-                  type='number'
-                  placeholder='请输入位次'
-                  value={rank}
-                  onChange={this.handleRankChange}
-                />
+                <View className='custom-input-wrapper'>
+                  <input
+                    className='custom-input'
+                    type='number'
+                    placeholder='请输入位次'
+                    value={rank}
+                    onChange={(e) => this.handleRankChange(e.target.value)}
+                  />
+                </View>
               </View>
             </View>
             
