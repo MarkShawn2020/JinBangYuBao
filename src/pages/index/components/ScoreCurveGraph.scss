@@ -1,0 +1,227 @@
+/* ScoreCurveGraph.scss */
+
+.score-curve-container {
+  position: relative;
+  width: 100%;
+  min-height: 240px;
+  padding: 16px;
+  background-color: #FFF8F5;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 10px;
+  
+  // 毛玻璃效果
+  &.frosted {
+    background-color: rgba(255, 248, 245, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    .score-card,
+    .recommendation-indicators,
+    .curve-background,
+    .score-markers,
+    .category-markers {
+      opacity: 0.5;
+      filter: blur(2px);
+      pointer-events: none;
+    }
+  }
+}
+
+// 背景曲线
+.curve-background {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  overflow: hidden;
+  z-index: 1;
+  
+  .curve-line {
+    position: absolute;
+    height: 150px;
+    width: 100%;
+    top: -50px;
+    background: radial-gradient(ellipse at center, transparent 40%, #FFE8E0 40%);
+    border-bottom: 2px dashed #FFD2C2;
+  }
+}
+
+// 分数标记
+.score-markers {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  padding: 0 10px;
+  margin-top: 70px;
+  z-index: 2;
+  
+  .marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    &.start {
+      align-items: flex-start;
+    }
+    
+    &.end {
+      align-items: flex-end;
+    }
+    
+    &.user-score {
+      .marker-score {
+        color: #FF6E26;
+        font-weight: bold;
+        font-size: 18px;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          width: 2px;
+          height: 40px;
+          background-color: #FF6E26;
+          bottom: 26px;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: -1;
+        }
+      }
+      
+      &::after {
+        content: '';
+        display: block;
+        width: 10px;
+        height: 10px;
+        background-color: #FF6E26;
+        border-radius: 50%;
+        margin-top: 5px;
+      }
+    }
+  }
+  
+  .marker-score {
+    font-size: 14px;
+    color: #999;
+    position: relative;
+    
+    &.active {
+      color: #FF6E26;
+    }
+  }
+}
+
+// 分类标记
+.category-markers {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
+  
+  .category-marker {
+    margin-top: 10px;
+    
+    .category-text {
+      font-size: 15px;
+      color: #666;
+      
+      &::after {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 2px;
+        background-color: #FFD2C2;
+        margin-top: 4px;
+      }
+    }
+  }
+}
+
+// 成绩卡片
+.score-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 10px 0;
+  box-shadow: 0 2px 8px rgba(255, 110, 38, 0.1);
+  position: relative;
+  z-index: 3;
+  
+  .score-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 4px;
+  }
+  
+  .score-rank {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 4px;
+  }
+  
+  .score-percentage {
+    font-size: 14px;
+    color: #666;
+    
+    .percentage-highlight {
+      color: #FF6E26;
+      font-weight: bold;
+      margin: 0 2px;
+    }
+  }
+}
+
+// 志愿推荐指标
+.recommendation-indicators {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  position: relative;
+  z-index: 3;
+  
+  .indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+    &:first-child {
+      .indicator-label {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 6px;
+      }
+    }
+  }
+  
+  .indicator-value-container {
+    display: flex;
+    align-items: center;
+    
+    &.orange {
+      color: #FF6E26;
+    }
+    
+    &.blue {
+      color: #4A89DC;
+    }
+    
+    &.green {
+      color: #3CB371;
+    }
+  }
+  
+  .indicator-value {
+    font-size: 22px;
+    font-weight: bold;
+    margin-right: 4px;
+  }
+  
+  .indicator-description {
+    font-size: 14px;
+  }
+}

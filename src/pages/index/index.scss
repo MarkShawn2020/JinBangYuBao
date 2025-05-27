@@ -52,12 +52,14 @@
     width: 100%;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 12px;
-    padding: 12px 0;
+    padding: 12px 0 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
     margin-bottom: 8px;
+    overflow: hidden;
   }
 
   .login-btn {
@@ -74,6 +76,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 16px; // 添加底部间距
     
     &.loading {
       background-color: #f8f8f8;

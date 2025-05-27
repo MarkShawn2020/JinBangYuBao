@@ -4,6 +4,7 @@ import Taro from "@tarojs/taro";
 import { AtNavBar, AtToast } from "taro-ui";
 import { logger, userService } from "../../services";
 import { User, ExamInfo } from "../../types/api";
+import ScoreCurveGraph from "./components/ScoreCurveGraph";
 import "./index.scss";
 
 interface IState {
@@ -334,7 +335,7 @@ export default class Index extends Component<PropsWithChildren, IState> {
               完善信息，为您精准测院校录取概率
             </Text>
             <View className="login-card">
-           {isLoggedIn && hasExamInfo ? (
+              {isLoggedIn && hasExamInfo ? (
                 <View className="login-btn success">已登录</View>
               ) : isLoggedIn && !hasExamInfo ? (
                 <View
@@ -348,6 +349,14 @@ export default class Index extends Component<PropsWithChildren, IState> {
                   点击登录
                 </View>
               )}
+              
+              {/* 分数曲线图表组件 */}
+              <ScoreCurveGraph 
+                isFrosted={!isLoggedIn || !hasExamInfo}
+                score={this.state.examInfo?.score || 677}
+                rank={this.state.examInfo?.rank || '412-536'}
+                percentage={this.state.examInfo?.percentile || 99}
+              />
             </View>
           </View>
         </View>
