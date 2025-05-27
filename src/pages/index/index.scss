@@ -69,6 +69,28 @@
     border-radius: 24px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(255, 110, 38, 0.3);
+    position: relative;
+    min-height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    &.loading {
+      background-color: #f8f8f8;
+      color: #888;
+      box-shadow: none;
+    }
+    
+    &.success {
+      background-color: #4CAF50;
+      box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
+    }
+    
+    &.warning {
+      background-color: #FFC107;
+      color: #333;
+      box-shadow: 0 2px 4px rgba(255, 193, 7, 0.3);
+    }
   }
 }
 

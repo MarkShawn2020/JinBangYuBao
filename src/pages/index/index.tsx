@@ -1,12 +1,17 @@
 import { Component, PropsWithChildren } from 'react'
 import { View, Text, Image, ScrollView } from '@tarojs/components'
 import Taro from '@tarojs/taro'
-import { AtNavBar } from 'taro-ui'
-import { logger } from '../../services'
+import { AtNavBar, AtToast } from 'taro-ui'
+import { logger, userService } from '../../services'
+import { User, ExamInfo } from '../../types/api'
 import './index.scss'
 
 interface IState {
   isLoggedIn: boolean;
+  isLoading: boolean;
+  hasExamInfo: boolean;
+  userInfo: User | null;
+  examInfo: ExamInfo | null;
   newsItems: Array<{
     id: number;
     title: string;
@@ -28,6 +33,10 @@ export default class Index extends Component<PropsWithChildren, IState> {
     super(props);
     this.state = {
       isLoggedIn: false,
+      isLoading: false,
+      hasExamInfo: false,
+      userInfo: null,
+      examInfo: null,
       newsItems: [
         {
           id: 1,
@@ -57,12 +66,69 @@ export default class Index extends Component<PropsWithChildren, IState> {
     });
     
     // 检查登录状态
-    const token = Taro.getStorageSync('token');
-    if (token) {
-      this.setState({ isLoggedIn: true });
-    }
+    this.checkLoginStatus();
+    
+    // 添加事件监听器，用于接收页面刷新通知
+    Taro.eventCenter.on('indexPageRefresh', () => {
+      logger.info('首页接收到页面刷新事件');
+      this.refreshData();
+    });
     
     logger.info('首页加载完成');
+  }
+  
+  componentWillUnmount() {
+    // 组件卸载时移除事件监听
+    Taro.eventCenter.off('indexPageRefresh');
+  }
+  
+  // 刷新数据方法
+  refreshData = () => {
+    logger.info('刷新首页数据');
+    this.fetchExamInfo();
+  }
+
+  // 检查登录状态
+  checkLoginStatus = () => {
+    logger.info('检查登录状态');
+    const token = Taro.getStorageSync('token');
+    const userInfo = Taro.getStorageSync('userInfo');
+
+    if (token && userInfo) {
+      this.setState({ isLoggedIn: true, userInfo }, () => {
+        // 获取用户考试信息
+        this.fetchExamInfo();
+      });
+    } else {
+      this.setState({ isLoading: false });
+    }
+  }
+
+  // 获取考试信息
+  fetchExamInfo = () => {
+    logger.info('获取用户考试信息');
+    
+    // 从本地存储中获取考试信息
+    try {
+      const examInfo = Taro.getStorageSync('examInfo');
+      
+      if (examInfo && examInfo.score) {
+        // 用户有考试信息
+        logger.info('从本地读取考试信息成功');
+        this.setState({
+          hasExamInfo: true,
+          examInfo: examInfo,
+          isLoading: false
+        });
+      } else {
+        // 用户没有考试信息
+        logger.info('本地没有存储考试信息');
+        this.setState({ hasExamInfo: false, isLoading: false });
+      }
+    } catch (error) {
+      logger.error('获取考试信息失败', { error });
+      this.setState({ hasExamInfo: false, isLoading: false });
+    }
   }
 
   // 功能网格数据
@@ -130,12 +196,99 @@ export default class Index extends Component<PropsWithChildren, IState> {
     }
   ];
 
-  // 导航到登录页
+  // 处理登录按钮点击
   handleLogin = () => {
     logger.info('用户点击登录按钮');
-    Taro.navigateTo({
-      url: '/pages/login/index'
+    this.setState({ isLoading: true });
+    
+    // 调用微信登录获取code
+    Taro.login({
+      success: (res) => {
+        if (res.code) {
+          logger.info('获取微信登录凭证成功', { code: res.code });
+          
+          // 调用后端登录接口
+          userService.wechatLogin({
+            code: res.code,
+            // 可选参数
+            invite_code: null,
+            channel_id: 'wechat_miniprogram'
+          }).then(response => {
+            // 处理登录成功
+            logger.info('微信登录成功');
+            
+            if (response.data && response.data.user) {
+              logger.info('用户信息', { userId: response.data.user.id });
+              
+              // 保存登录信息到本地存储
+              Taro.setStorageSync('token', response.data.token);
+              Taro.setStorageSync('refreshToken', response.data.refreshToken);
+              Taro.setStorageSync('userInfo', response.data.user);
+              
+              // 更新状态
+              this.setState({
+                isLoggedIn: true,
+                userInfo: response.data.user,
+                isLoading: false
+              }, () => {
+                // 获取考试信息
+                this.fetchExamInfo();
+                
+                // 提示登录成功
+                Taro.showToast({ 
+                  title: '登录成功', 
+                  icon: 'success',
+                  duration: 2000
+                });
+                
+                // 检查是否需要跳转到填写分数页面
+                setTimeout(() => {
+                  const examInfo = Taro.getStorageSync('examInfo');
+                  if (!examInfo || !examInfo.score) {
+                    logger.info('用户无考试信息，跳转至填写分数页面');
+                    this.navigateToExamInfoPage();
+                  }
+                }, 1500); // 等待提示显示后再判断跳转
+              });
+            }
+          }).catch(error => {
+            // 处理登录失败
+            logger.error('微信登录失败', { error });
+            this.setState({ isLoading: false });
+            Taro.showToast({
+              title: error.message || '登录失败，请重试',
+              icon: 'none',
+              duration: 2000
+            });
+          });
+        } else {
+          // 获取微信code失败
+          logger.error('获取微信登录凭证失败', { errMsg: res.errMsg });
+          this.setState({ isLoading: false });
+          Taro.showToast({ 
+            title: '登录失败: ' + res.errMsg, 
+            icon: 'none',
+            duration: 2000
+          });
+        }
+      },
+      fail: (err) => {
+        // 微信登录API调用失败
+        logger.error('微信登录API调用失败', { err });
+        this.setState({ isLoading: false });
+        Taro.showToast({ 
+          title: '登录失败，请检查网络', 
+          icon: 'none',
+          duration: 2000
+        });
+      }
     });
+  }
+  
+  // 导航到填写分数页面
+  navigateToExamInfoPage = () => {
+    logger.info('跳转至填写分数页面');
+    Taro.navigateTo({ url: '/pages/exam-info/index' });
   }
 
   // 导航到功能页面
@@ -161,7 +314,7 @@ export default class Index extends Component<PropsWithChildren, IState> {
   }
 
   render() {
-    const { isLoggedIn, newsItems } = this.state;
+    const { isLoggedIn, isLoading, hasExamInfo, newsItems } = this.state;
 
     return (
       <View className='index-page'>
@@ -178,9 +331,23 @@ export default class Index extends Component<PropsWithChildren, IState> {
           <View className='banner-content'>
             <Text className='banner-text'>完善信息，为您精准测院校录取概率</Text>
             <View className='login-card'>
-              <View className='login-btn' onClick={this.handleLogin}>
-                点击登录
-              </View>
+              {isLoading ? (
+                <View className='login-btn loading'>
+                  <AtToast isOpened text='登录中...' status='loading' hasMask={false} duration={0} />
+                </View>
+              ) : isLoggedIn && hasExamInfo ? (
+                <View className='login-btn success'>
+                  已登录
+                </View>
+              ) : isLoggedIn && !hasExamInfo ? (
+                <View className='login-btn warning' onClick={this.navigateToExamInfoPage}>
+                  填写分数
+                </View>
+              ) : (
+                <View className='login-btn' onClick={this.handleLogin}>
+                  点击登录
+                </View>
+              )}
             </View>
           </View>
         </View>
