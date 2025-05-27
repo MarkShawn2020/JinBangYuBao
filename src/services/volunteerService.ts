@@ -4,7 +4,7 @@
  */
 
 import httpClient from '../utils/request';
-import { ApiResponse, PaginatedResponse } from '../types/api';
+import { ApiResponse, PaginatedResponse, ExamInfo } from '../types/api';
 
 // 志愿填报相关类型定义
 export interface VolunteerForm {
@@ -199,19 +199,21 @@ class VolunteerService {
    * 获取填报模板
    */
   async getVolunteerTemplates(province: string, year: number): Promise<ApiResponse<VolunteerForm[]>> {
-    return httpClient.get('/volunteer/templates', { province, year }, {
-      showError: true,
-    });
+    return httpClient.get('/volunteer/templates', { params: { province, year } });
   }
 
   /**
    * 复制志愿表
    */
   async copyVolunteerForm(formId: string, newName: string): Promise<ApiResponse<VolunteerForm>> {
-    return httpClient.post(`/volunteer/forms/${formId}/copy`, { name: newName }, {
-      showLoading: true,
-      showError: true,
-    });
+    return httpClient.post(`/volunteer/forms/${formId}/copy`, { newName });
+  }
+
+  /**
+   * 获取用户考试信息
+   */
+  async getUserExamInfo(): Promise<ApiResponse<ExamInfo>> {
+    return httpClient.get('/user/exam-info');
   }
 }
 

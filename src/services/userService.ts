@@ -25,8 +25,8 @@ export interface LoginParams {
 
 export interface WechatLoginParams {
   code: string;
-  invite_code?: string;
-  channel_id?: string;
+  invite_code: string | null;
+  channel_id: string;
 }
 
 export interface LoginResponse {

@@ -59,3 +59,34 @@ export interface UploadResponse {
 export interface UploadConfig extends RequestConfig {
   onProgress?: (percent: number) => void;
 }
+
+// 用户相关类型
+export interface User {
+  id: string;
+  nickname?: string;
+  avatar?: string;
+  phone?: string;
+  isVip?: boolean;
+  vipExpireDate?: string;
+  balance?: number;
+  createTime?: string;
+  lastLoginTime?: string;
+}
+
+// 考试信息相关类型
+export interface ExamInfo {
+  id?: string;
+  userId?: string;
+  province: string;
+  examBatch: string;
+  examType: string;
+  firstSubject: string;
+  secondSubjects: string[];
+  score: number;
+  rank: number;
+  rankRange?: string;
+  percentile?: number;
+  year: number;
+  createTime?: string;
+  updateTime?: string;
+}
