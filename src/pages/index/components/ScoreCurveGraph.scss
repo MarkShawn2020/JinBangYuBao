@@ -9,6 +9,7 @@
   border-radius: 12px;
   overflow: hidden;
   margin-top: 0;
+  box-sizing: border-box;
   
   // 毛玻璃效果
   &.frosted {

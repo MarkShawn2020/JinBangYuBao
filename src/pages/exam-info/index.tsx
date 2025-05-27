@@ -26,10 +26,10 @@ export default class ExamInfo extends Component<{}, IState> {
     super(props)
     this.state = {
       province: '河南',
-      examBatch: '',
-      examType: '',
-      firstSubject: '',
-      secondSubjects: [],
+      examBatch: '本科普通批',
+      examType: '本科普通批',
+      firstSubject: '物理',
+      secondSubjects: ['化学', '生物'],
       score: '',
       rank: '',
       scoreRange: '435~618',
@@ -439,7 +439,7 @@ export default class ExamInfo extends Component<{}, IState> {
               </View>
             </View>
             
-            <View className='form-item'>
+            {/* <View className='form-item'>
               <View className='label'>
                 高考位次
                 <Text className='auto-label'>（自动计算）</Text>
@@ -455,7 +455,7 @@ export default class ExamInfo extends Component<{}, IState> {
                   />
                 </View>
               </View>
-            </View>
+            </View> */}
             
             <View className='form-item score-range'>
               <Text className='star'>*</Text>

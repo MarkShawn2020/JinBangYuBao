@@ -344,20 +344,20 @@ export default class Index extends Component<PropsWithChildren, IState> {
               />
               
               {/* 登录按钮 - 居中显示在顶层 */}
-              {isLoggedIn && hasExamInfo ? (
-                <View className="login-btn success">已登录</View>
-              ) : isLoggedIn && !hasExamInfo ? (
-                <View
-                  className="login-btn warning"
-                  onClick={this.navigateToExamInfoPage}
-                >
-                  填写分数
-                </View>
-              ) : (
-                <View className="login-btn" onClick={this.handleLogin}>
-                  点击登录
-                </View>
-              )}
+              {
+                !isLoggedIn ? (
+                  <View className="login-btn" onClick={this.handleLogin}>
+                    点击登录
+                  </View>
+                ) : !hasExamInfo ? (
+                  <View
+                    className="login-btn warning"
+                    onClick={this.navigateToExamInfoPage}
+                  >
+                    填写分数
+                  </View>
+                ) : null
+              }
             </View>
           </View>
         </View>
