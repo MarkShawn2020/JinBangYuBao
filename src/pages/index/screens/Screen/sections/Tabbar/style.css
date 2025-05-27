@@ -3,7 +3,7 @@
   left: 0;
   position: absolute;
   top: 1133px;
-  width: 377px;
+  width: 100%;
 }
 
 .tabbar .overlap-3 {
@@ -16,7 +16,7 @@
   left: 0;
   position: absolute;
   top: 0;
-  width: 377px;
+  width: 100%;
 }
 
 .tabbar .union {
@@ -24,7 +24,7 @@
   left: 0;
   position: absolute;
   top: 0;
-  width: 375px;
+  width: 100%;
 }
 
 .tabbar .frame-11 {
@@ -41,7 +41,7 @@
   flex-direction: column;
   gap: 4px;
   height: 43px;
-  left: 106px;
+  left: 28%;
   position: absolute;
   top: 28px;
   width: 44px;
@@ -68,7 +68,7 @@
 
 .tabbar .img-wrapper {
   height: 46px;
-  left: 166px;
+  left: calc(50% - 24px);
   position: absolute;
   top: 10px;
   width: 48px;
@@ -88,7 +88,7 @@
   flex-direction: column;
   gap: 4px;
   height: 43px;
-  left: 248px;
+  left: 66%;
   position: absolute;
   top: 28px;
   width: 33px;
@@ -118,7 +118,7 @@
   flex-direction: column;
   gap: 4px;
   height: 43px;
-  left: 325px;
+  left: 90%;
   position: absolute;
   top: 28px;
   width: 24px;

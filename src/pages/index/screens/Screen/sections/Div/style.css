@@ -2,11 +2,11 @@
   align-items: flex-start;
   display: flex;
   gap: 48px;
-  left: 46px;
+  left: 12%;
   overflow-x: scroll;
   position: absolute;
   top: 735px;
-  width: 283px;
+  width: 76%;
 }
 
 .div .frame-2 {
@@ -26,12 +26,12 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: 60px;
+  height: clamp(50px, 16vw, 60px);
   justify-content: center;
   overflow: hidden;
   padding: 16px;
   position: relative;
-  width: 60px;
+  width: clamp(50px, 16vw, 60px);
 }
 
 .div .tesla-wrapper {
@@ -72,11 +72,11 @@
   border-radius: 50px;
   display: flex;
   gap: 10px;
-  height: 60px;
+  height: clamp(50px, 16vw, 60px);
   overflow: hidden;
   padding: 15px;
   position: relative;
-  width: 60px;
+  width: clamp(50px, 16vw, 60px);
 }
 
 .div .frame-5 {
@@ -92,9 +92,9 @@
   border: 1px solid;
   border-color: transparent;
   border-radius: 50px;
-  height: 60px;
+  height: clamp(50px, 16vw, 60px);
   position: relative;
-  width: 60px;
+  width: clamp(50px, 16vw, 60px);
 }
 
 .div::-webkit-scrollbar {

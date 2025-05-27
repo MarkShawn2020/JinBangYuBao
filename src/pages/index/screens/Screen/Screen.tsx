@@ -48,7 +48,7 @@ export class Screen extends React.Component {
                       src="../../../assets/img/53.svg"
                     />
 
-                    <div className="text-wrapper-28">志愿通</div>
+                    {/* <div className="text-wrapper-28">志愿通</div> */}
 
                     <img className="del" alt="Del" src="../../../assets/img/del-1.svg" />
 
@@ -208,10 +208,10 @@ export class Screen extends React.Component {
               </div>
             </div>
 
-            <Tabbar />
+            {/* <Tabbar /> */}
           </div>
 
-          <div className="rectangle-8" />
+          {/* <div className="rectangle-8" /> */}
         </div>
       </div>
     </div>

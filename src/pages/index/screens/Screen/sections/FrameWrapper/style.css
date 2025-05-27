@@ -8,16 +8,17 @@
   height: 229px;
   left: 16px;
   position: absolute;
-  top: 246px;
-  width: 342px;
+  top: 300px;
+  width: calc(100% - 32px);
+
 }
 
 .frame-wrapper .view {
   height: 16px;
-  left: 70px;
+  left: calc(20% - 4px);
   position: absolute;
   top: 11px;
-  width: 206px;
+  width: 60%;
 }
 
 .frame-wrapper .text-wrapper-8 {
@@ -53,18 +54,18 @@
 .frame-wrapper .overlap {
   border-radius: 16px;
   height: 176px;
-  left: 7px;
+  left: 2%;
   position: absolute;
   top: 39px;
-  width: 327px;
+  width: 96%;
 }
 
 .frame-wrapper .chart {
   height: 133px;
-  left: 1px;
+  left: 0.3%;
   position: absolute;
   top: 0;
-  width: 326px;
+  width: 99.4%;
 }
 
 .frame-wrapper .overlap-group {
@@ -76,10 +77,10 @@
 
 .frame-wrapper .view-2 {
   height: 18px;
-  left: 12px;
+  left: 3.5%;
   position: absolute;
   top: 150px;
-  width: 301px;
+  width: 93%;
 }
 
 .frame-wrapper .group-2 {
@@ -87,7 +88,7 @@
   left: 0;
   position: absolute;
   top: 1px;
-  width: 126px;
+  width: 42%;
 }
 
 .frame-wrapper .text-wrapper-9 {
@@ -95,7 +96,7 @@
   font-family: "MiSans-Demibold", Helvetica;
   font-size: 16px;
   font-weight: 400;
-  left: 55px;
+  left: 44%;
   letter-spacing: 0;
   line-height: 16px;
   position: absolute;
@@ -108,7 +109,7 @@
   font-family: "MiSans-Regular", Helvetica;
   font-size: 12px;
   font-weight: 400;
-  left: 76px;
+  left: 60%;
   letter-spacing: 0;
   line-height: 16px;
   position: absolute;
@@ -131,10 +132,10 @@
 
 .frame-wrapper .group-3 {
   height: 17px;
-  left: 148px;
+  left: 49%;
   position: absolute;
   top: 0;
-  width: 61px;
+  width: 20%;
 }
 
 .frame-wrapper .text-wrapper-12 {
@@ -165,10 +166,10 @@
 
 .frame-wrapper .group-4 {
   height: 16px;
-  left: 236px;
+  left: 78%;
   position: absolute;
   top: 1px;
-  width: 69px;
+  width: 22%;
 }
 
 .frame-wrapper .text-wrapper-14 {

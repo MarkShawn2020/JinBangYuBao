@@ -1,9 +1,10 @@
 .group {
   height: 64px;
-  left: 26px;
+  left: 7%;
   position: absolute;
   top: 901px;
-  width: 334px;
+  width: 86%;
+  max-width: 500px;
 }
 
 .group .text-wrapper {
@@ -16,7 +17,7 @@
   line-height: normal;
   position: absolute;
   top: 0;
-  width: 330px;
+  width: 98%;
 }
 
 .group .text-wrapper-2 {
@@ -29,5 +30,5 @@
   line-height: normal;
   position: absolute;
   top: 48px;
-  width: 311px;
+  width: 93%;
 }

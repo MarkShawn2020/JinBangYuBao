@@ -1,11 +1,12 @@
 .section-component-node {
   align-items: flex-start;
   display: inline-flex;
-  gap: 16px;
+  gap: 4%;
   height: 64px;
-  left: 17px;
+  left: 4.5%;
   position: absolute;
-  top: 489px;
+  top: 600px;
+  width: 91%;
 }
 
 .section-component-node .frame-7 {
@@ -24,7 +25,9 @@
   overflow: hidden;
   padding: 12px 16px;
   position: relative;
-  width: 163px;
+  width: calc(50% - 12px);
+  min-width: 140px;
+  /* max-width: 180px; */
 }
 
 .section-component-node .frame-8 {
@@ -38,15 +41,15 @@
 .section-component-node .frame-9 {
   background-color: #eeeeff;
   border-radius: 12.8px;
-  height: 39.04px;
+  height: clamp(32px, 12vw, 39.04px);
   overflow: hidden;
   position: relative;
-  width: 39.04px;
+  width: clamp(32px, 12vw, 39.04px);
 }
 
 .section-component-node .icon-pencil-instance {
-  height: 40px !important;
-  width: 40px !important;
+  height: clamp(32px, 12vw, 40px) !important;
+  width: clamp(32px, 12vw, 40px) !important;
 }
 
 .section-component-node .design-component-instance-node {
@@ -58,8 +61,8 @@
   background-color: #efeeff !important;
   border-radius: 10.24px !important;
   box-shadow: 1.74px 5.22px 19.32px -2.51px #15334f1a !important;
-  height: 40px !important;
-  width: 40px !important;
+  height: clamp(32px, 12vw, 40px) !important;
+  width: clamp(32px, 12vw, 40px) !important;
 }
 
 .section-component-node .design-component-instance-node-2 {
