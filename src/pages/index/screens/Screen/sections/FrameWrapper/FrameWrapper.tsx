@@ -27,6 +27,23 @@ export class FrameWrapper extends Component<{}, IState> {
   componentDidMount() {
     // 检查登录状态和考试信息
     this.checkLoginStatus();
+    
+    // 添加事件监听器，如果组件没有销毁则可以接收到来自页面刷新的通知
+    Taro.eventCenter.on('indexPageRefresh', () => {
+      logger.info('FrameWrapper接收到页面刷新事件');
+      this.refreshData();
+    });
+  }
+  
+  componentWillUnmount() {
+    // 组件卸载时移除事件监听
+    Taro.eventCenter.off('indexPageRefresh');
+  }
+  
+  // 刷新数据的方法
+  refreshData = () => {
+    logger.info('刷新 FrameWrapper 数据');
+    this.fetchExamInfo();
   }
 
   checkLoginStatus = () => {

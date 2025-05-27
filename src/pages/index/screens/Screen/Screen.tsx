@@ -11,6 +11,19 @@ import { Tabbar } from "./sections/Tabbar";
 import "./style.css";
 
 export class Screen extends React.Component {
+  // 添加生命周期方法 - 页面显示时触发刷新数据
+  componentDidShow() {
+    // 获取所有 FrameWrapper 组件实例并刷新数据
+    const frameWrapperInstances = document.querySelectorAll('.frame-wrapper') || [];
+    
+    // 通知刷新数据事件
+    const refreshEvent = new CustomEvent('refreshFrameWrapper', { bubbles: true });
+    frameWrapperInstances.forEach(el => {
+      el.dispatchEvent(refreshEvent);
+    });
+    
+    console.log('首页刷新数据');
+  }
   render() {
     return (
     <div className="screen" data-model-id="672:11285">
