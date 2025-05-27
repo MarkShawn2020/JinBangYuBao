@@ -262,11 +262,46 @@ export class FrameWrapper extends Component<{}, IState> {
     return this.renderScoreDistribution();
   }
 
+  // 渲染科目组合文本
+  renderSubjectText = () => {
+    const { examInfo } = this.state;
+    if (!examInfo) return '';
+    
+    const firstSubject = examInfo.firstSubject || '';
+    const secondSubjects = examInfo.secondSubjects || [];
+    
+    // 获取科目的首字母
+    const subjectInitials = {
+      '物理': '物',
+      '化学': '化',
+      '生物': '生',
+      '历史': '历',
+      '政治': '政',
+      '地理': '地'
+    };
+    
+    const firstInitial = subjectInitials[firstSubject] || firstSubject;
+    const secondInitials = secondSubjects.map(subject => subjectInitials[subject] || subject).join('');
+    
+    return firstInitial + secondInitials;
+  }
+  
   render() {
+    const { isLoggedIn, hasExamInfo, examInfo } = this.state;
+    
     return (
     <div className="frame-wrapper">
       <div className="view">
-        <div className="text-wrapper-8">完善信息，为您精准预测院校录取概率</div>
+        {!hasExamInfo ? (
+          // 默认提示文字
+          <div className="text-wrapper-8">完善信息，为您精准预测院校录取概率</div>
+        ) : (
+          // 有考试信息时显示的格式
+          <div className="text-wrapper-8">
+            {examInfo?.province || '河南'} | {this.renderSubjectText()} | {examInfo?.score || '0'}分 {examInfo?.rank || '0'}名 | {examInfo?.examType || '本科普通批'}
+            <span className="edit-icon" onClick={this.navigateToExamInfoPage}>首</span>
+          </div>
+        )}
       </div>
 
       <div className="overlap">
