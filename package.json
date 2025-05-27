@@ -53,10 +53,13 @@
     "@tarojs/runtime": "3.6.35",
     "@tarojs/shared": "3.6.35",
     "@tarojs/taro": "3.6.35",
+    "@tarojs/taro-rn": "3.6.35",
+    "@visactor/taro-vchart": "^1.13.10",
     "lodash": "4.17.15",
     "qrcode": "^1.5.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "taro-f2": "^2.2.0",
     "taro-ui": "^3.2.1"
   },
   "devDependencies": {

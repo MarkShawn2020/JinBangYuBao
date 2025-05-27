@@ -22,6 +22,7 @@ export default class ScoreCurveGraph extends Component<ScoreCurveGraphProps> {
 
     return (
       <View className={`score-curve-container ${isFrosted ? 'frosted' : ''}`}>
+        
         {/* 背景曲线 */}
         <View className="curve-background">
           <View className="curve-line"></View>
