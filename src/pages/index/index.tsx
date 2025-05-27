@@ -62,26 +62,12 @@ export default class Index extends Component<PropsWithChildren, IState> {
     };
   }
 
-  componentDidMount() {
-    Taro.setNavigationBarTitle({
-      title: "志愿通",
-    });
+  componentDidShow() {
 
     // 检查登录状态
     this.checkLoginStatus();
 
-    // 添加事件监听器，用于接收页面刷新通知
-    Taro.eventCenter.on("indexPageRefresh", () => {
-      logger.info("首页接收到页面刷新事件");
-      this.refreshData();
-    });
-
-    logger.info("首页加载完成");
-  }
-
-  componentWillUnmount() {
-    // 组件卸载时移除事件监听
-    Taro.eventCenter.off("indexPageRefresh");
+    logger.info("首页加载完成");    
   }
 
   // 刷新数据方法

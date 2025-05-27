@@ -296,7 +296,7 @@ export default class ExamInfo extends Component<{}, IState> {
             // 成功后返回首页
             setTimeout(() => {
               Taro.navigateBack()
-            }, 1500)
+            }, 0)
           }
         })
       }, 500)
