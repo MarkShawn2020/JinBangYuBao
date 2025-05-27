@@ -1,0 +1,16 @@
+.chart-container {
+  width: 100%;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+/* 适配移动端 */
+@media screen and (max-width: 768px) {
+  .chart-container {
+    padding: 12px;
+  }
+}

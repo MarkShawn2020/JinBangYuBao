@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { View, Text } from '@tarojs/components';
 import './ScoreCurveGraph.scss';
+import { Pie } from './chart';
 
 interface ScoreCurveGraphProps {
   score?: number;
@@ -22,6 +23,8 @@ export default class ScoreCurveGraph extends Component<ScoreCurveGraphProps> {
 
     return (
       <View className={`score-curve-container ${isFrosted ? 'frosted' : ''}`}>
+
+        <Pie/>
         
         {/* 背景曲线 */}
         <View className="curve-background">

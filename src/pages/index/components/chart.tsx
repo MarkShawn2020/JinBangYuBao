@@ -1,98 +1,123 @@
 import React, { useEffect, useState } from 'react';
-import { View } from '@tarojs/components';
+import { Canvas, View } from '@tarojs/components';
+import Taro from '@tarojs/taro';
+// 不直接导入 VChart 组件，而是使用默认导出的方式
+// 因为默认导出的组件具有更宽松的类型检查
 import VChart from '@visactor/taro-vchart';
+import theme from '../../../assets/theme/light.json';
+import { logger } from '../../../utils/logger';
 
 export function Pie() {
-  const [spec, setSpec] = useState({
-    data: [
-      {
-        id: 'data1',
-        values: [
-          {
-            value: 335,
-            name: '直接访问'
-          },
-          {
-            value: 310,
-            name: '邮件营销'
-          },
-          {
-            value: 274,
-            name: '联盟广告'
-          },
-          {
-            value: 235,
-            name: '视频广告'
-          },
-          {
-            value: 400,
-            name: '搜索引擎'
+  const [chartReady, setChartReady] = useState(false);
+  const canvasId = 'line-chart-canvas';
+    const spec = {
+        type: 'line',
+        theme,
+        data: {
+          values: [
+            {
+              time: '2:00',
+              value: 38
+            },
+            {
+              time: '4:00',
+              value: 56
+            },
+            {
+              time: '6:00',
+              value: 10
+            },
+            {
+              time: '8:00',
+              value: 70
+            },
+            {
+              time: '10:00',
+              value: 36
+            },
+            {
+              time: '12:00',
+              value: 94
+            },
+            {
+              time: '14:00',
+              value: 24
+            },
+            {
+              time: '16:00',
+              value: 44
+            },
+            {
+              time: '18:00',
+              value: 36
+            },
+            {
+              time: '20:00',
+              value: 68
+            },
+            {
+              time: '22:00',
+              value: 22
+            }
+          ]
+        },
+        xField: 'time',
+        yField: 'value',
+        line: {
+          style: {
+            curveType: 'monotone'
           }
-        ]
-      }
-    ],
-    type: 'pie',
-    outerRadius: 0.6,
-    innerRadius: 0.5,
-    categoryField: 'name',
-    valueField: 'value',
-    legends: {
-      visible: true
-    }
-  });
-
-  useEffect(() => {
-    setTimeout(() => {
-      setSpec({
-        data: [
-          {
-            id: 'data1',
-            values: [
-              {
-                value: 335,
-                name: '直接访问'
-              },
-              {
-                value: 310,
-                name: '邮件营销'
-              }
-            ]
-          }
-        ],
-        type: 'pie',
-        outerRadius: 0.6,
-        innerRadius: 0.5,
-        categoryField: 'name',
-        valueField: 'value',
-        legends: {
-          visible: true
         }
-      });
-    }, 3000);
+      };
+
+  // 使用 useEffect 确保在组件挂载后初始化图表
+  useEffect(() => {
+    // 确保在小程序环境中运行
+    if (Taro.getEnv() === Taro.ENV_TYPE.WEAPP) {
+      logger.info('初始化图表', { canvasId });
+      // 延迟一下以确保 Canvas 组件已渲染
+      setTimeout(() => {
+        setChartReady(true);
+      }, 100);
+    }
   }, []);
 
   return (
     <View
       style={{
         border: '1px solid #eeeeee',
-        width: '90vw'
+        width: '90vw',
+        position: 'relative'
       }}
     >
-      <VChart
-        type="tt"
-        spec={spec}
-        canvasId="pie"
-        style={{ height: '35vh', width: '100%' }}
-        onChartInit={() => {
-          console.log('init pie');
-        }}
-        onChartReady={() => {
-          console.log('ready pie');
-        }}
-        onChartUpdate={() => {
-          console.log('update pie');
+      <Canvas
+        type="2d"
+        id={canvasId}
+        canvasId={canvasId}
+        style={{
+          width: '100%',
+          height: '35vh'
         }}
       />
+      
+      {chartReady && (
+        <VChart
+          type="weapp"
+          // @ts-ignore
+          spec={spec}
+          canvasId={canvasId}
+          style={{ height: '35vh', width: '100%' }}
+          onChartInit={() => {
+            logger.info('图表初始化完成');
+          }}
+          onChartReady={() => {
+            logger.info('图表准备完成');
+          }}
+          onChartUpdate={() => {
+            logger.info('图表更新');
+          }}
+        />
+      )}
     </View>
   );
 }
