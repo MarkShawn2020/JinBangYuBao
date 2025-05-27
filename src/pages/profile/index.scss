@@ -92,15 +92,57 @@
     
     // 其他功能区域
     .other-features {
-      margin-top: 40px;
-      text-align: left;
+      margin-top: 30px;
       
       .section-title {
-        font-size: 16px;
+        font-size: 18px;
         font-weight: bold;
         color: #fff;
-        margin-bottom: 15px;
+        margin-bottom: 16px;
         display: block;
+        text-align: left;
+      }
+    }
+    
+    // 开发者选项区域
+    .dev-options {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      
+      .dev-options-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin: 15px 0;
+        
+        .dev-button {
+          margin-bottom: 0;
+          font-size: 14px;
+          border-radius: 6px;
+          
+          &.danger-button {
+            background-color: #FF4757;
+            color: white;
+            grid-column: span 2;
+          }
+          
+          &.close-button {
+            grid-column: span 2;
+            margin-top: 5px;
+            background-color: #f0f0f0;
+            color: #666;
+          }
+        }
+      }
+      
+      .dev-note {
+        margin-top: 15px;
+        font-size: 12px;
+        color: #999;
+        text-align: center;
       }
     }
   }
