@@ -5,6 +5,8 @@
 
 import httpClient from '../utils/request';
 import { ApiResponse } from '../types/api';
+import logger from '../utils/logger';
+import Taro from '@tarojs/taro';
 
 // 用户相关的类型定义
 export interface User {
@@ -107,10 +109,45 @@ class UserService {
    * @param params 微信登录参数（code、邀请码等）
    */
   async wechatLogin(params: WechatLoginParams): Promise<ApiResponse<LoginResponse>> {
-    return httpClient.post('/wechat/login', params, {
+    // 第一步：获取JWT token
+    const tokenResponse = await httpClient.post('/wechat/login', params, {
       showLoading: true,
       showError: true,
     });
+    
+    // 记录token获取
+    logger.info('微信登录获取token成功');
+    
+    // 提取token
+    const token = tokenResponse.data.access_token;
+    const tokenType = tokenResponse.data.type || 'bearer';
+    
+    if (!token) {
+      throw new Error('登录失败：未获取到有效token');
+    }
+
+    await Taro.setStorage({
+      key: 'token',
+      data: token,
+    });
+    
+    // 第二步：使用token获取用户信息
+    const userInfoResponse = await httpClient.get('/me', undefined, {
+      showError: true
+    });
+    
+    logger.info('获取用户信息成功');
+    
+    // 构建完整的登录响应
+    return {
+      code: 0,
+      message: '登录成功',
+      data: {
+        user: userInfoResponse.data,
+        token: token,
+        refreshToken: token, // 如果后端提供refreshToken，这里应替换
+      }
+    };
   }
 
   /**

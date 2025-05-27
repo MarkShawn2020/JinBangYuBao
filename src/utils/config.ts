@@ -13,19 +13,19 @@ export interface AppConfig {
 // 环境配置
 const configs: Record<string, AppConfig> = {
   development: {
-    baseURL: 'https://api.unichr.cn/chengrui/v1/',
+    baseURL: 'https://api.unichr.cn/chengrui/v1',
     timeout: 10000,
     retryCount: 3,
     retryDelay: 1000,
   },
   production: {
-    baseURL: 'https://api.unichr.cn/chengrui/v1/',
+    baseURL: 'https://api.unichr.cn/chengrui/v1',
     timeout: 15000,
     retryCount: 2,
     retryDelay: 1500,
   },
   test: {
-    baseURL: 'https://api.unichr.cn/chengrui/v1/',
+    baseURL: 'https://api.unichr.cn/chengrui/v1',
     timeout: 5000,
     retryCount: 1,
     retryDelay: 500,

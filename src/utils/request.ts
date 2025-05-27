@@ -182,17 +182,30 @@ class HttpClient {
     if (statusCode >= 200 && statusCode < 300) {
       // 业务逻辑检查
       if (data && typeof data === 'object') {
-        if (data.code === 0 || data.success === true) {
+        // 如果返回的是标准 API 响应格式
+        if ('code' in data || 'success' in data) {
+          // 明确表示失败的情况才抛出错误
+          if (data.code !== undefined && data.code !== 0 && data.code !== 200 && data.success === false) {
+            // 业务错误
+            const error: ApiError = {
+              code: data.code || -1,
+              message: data.message || '业务处理失败',
+              details: data,
+            };
+            throw error;
+          }
+          
+          // 包含这些字段但未表示失败，应该是成功的 API 响应
           return data as ApiResponse<T>;
-        } else {
-          // 业务错误
-          const error: ApiError = {
-            code: data.code || -1,
-            message: data.message || '业务处理失败',
-            details: data,
-          };
-          throw error;
         }
+        
+        // 没有标准 API 响应字段，可能是直接返回的数据结构
+        // 包装为标准格式返回
+        return {
+          code: 0,
+          message: 'success',
+          data: data as T,
+        };
       }
       
       // 直接返回数据

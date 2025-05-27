@@ -86,28 +86,31 @@ export class FrameWrapper extends Component<{}, IState> {
           }).then(response => {
             // 处理登录成功
             logger.info('微信登录成功');
-            logger.info('用户信息',  { userId: response.data.user.id });
             
-            // 保存登录信息到本地存储
-            Taro.setStorageSync('token', response.data.token);
-            Taro.setStorageSync('refreshToken', response.data.refreshToken);
-            Taro.setStorageSync('userInfo', response.data.user);
-            
-            // 更新状态
-            this.setState({
-              isLoggedIn: true,
-              userInfo: response.data.user
-            }, () => {
-              // 获取考试信息
-              this.fetchExamInfo();
+            if (response.data && response.data.user) {
+              logger.info('用户信息', { userId: response.data.user.id });
               
-              // 提示登录成功
-              Taro.showToast({ 
-                title: '登录成功', 
-                icon: 'success',
-                duration: 2000
+              // 保存登录信息到本地存储
+              Taro.setStorageSync('token', response.data.token);
+              Taro.setStorageSync('refreshToken', response.data.refreshToken);
+              Taro.setStorageSync('userInfo', response.data.user);
+              
+              // 更新状态
+              this.setState({
+                isLoggedIn: true,
+                userInfo: response.data.user
+              }, () => {
+                // 获取考试信息
+                this.fetchExamInfo();
+                
+                // 提示登录成功
+                Taro.showToast({ 
+                  title: '登录成功', 
+                  icon: 'success',
+                  duration: 2000
+                });
               });
-            });
+            }
           }).catch(error => {
             // 处理登录失败
             logger.error('微信登录失败', { error });
