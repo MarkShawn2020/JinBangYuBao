@@ -109,14 +109,100 @@ export default class ExamInfo extends Component<{}, IState> {
     })
   }
 
+  // 存储当前的分数查询定时器
+  scoreQueryTimer: NodeJS.Timeout | null = null;
+  
   handleScoreChange = (value: string) => {
     // 验证输入是否为数字
     if (!/^[0-9]*$/.test(value) && value !== '') {
       return this.state.score
     }
-    logger.info('Updated score:', value)
+    
+    logger.info('更新分数:', value)
     this.setState({ score: value })
+    
+    // 如果分数是三位数，启动定时器自动查询排名
+    if (value.length >= 3) {
+      // 清除之前的定时器
+      if (this.scoreQueryTimer) {
+        clearTimeout(this.scoreQueryTimer);
+      }
+      
+      // 设置新的定时器，500毫秒后查询
+      this.scoreQueryTimer = setTimeout(() => {
+        this.fetchScoreRank(parseInt(value, 10));
+      }, 500);
+    }
+    
     return value
+  }
+  
+  // 根据分数查询排名
+  fetchScoreRank = (score: number) => {
+    logger.info('根据分数查询排名:', score);
+    
+    // 检查用户是否已选择了首选科目（一门）和再选科目（两门）
+    const { firstSubject, secondSubjects } = this.state;
+    
+    if (!firstSubject) {
+      logger.info('跳过排名查询: 首选科目未选择');
+      return;
+    }
+    
+    if (secondSubjects.length !== 2) {
+      logger.info(`跳过排名查询: 再选科目未完全选择 (当前选择了 ${secondSubjects.length} 门)`);
+      return;
+    }
+    
+    // 构建科目分类字符串
+    const subjectMap: Record<string, string> = {
+      '物理': 'physics',
+      '历史': 'history',
+      '化学': 'chemistry',
+      '生物': 'biology',
+      '政治': 'politics',
+      '地理': 'geography'
+    };
+    
+    const subjects = [firstSubject, ...secondSubjects]
+      .map(subject => subjectMap[subject] || subject)
+      .filter(Boolean);
+    
+    const subjectCategory = subjects.join(',');
+    
+    // 调用API获取排名
+    logger.info('发起排名查询请求', { subjectCategory, score });
+    
+    Taro.request({
+      url: `${Taro.getStorageSync('baseUrl') || 'https://api.unichr.cn/chengrui/v1'}/score-rank`,
+      method: 'GET',
+      header: {
+        'Authorization': `Bearer ${Taro.getStorageSync('token')}`,
+        'Content-Type': 'application/json'
+      },
+      data: {
+        subject_category: subjectCategory,
+        score: score
+      },
+      success: (res) => {
+        if (res.statusCode === 200 && res.data) {
+          const { rank, rank_percent } = res.data;
+          
+          // 更新状态
+          this.setState({
+            rank: rank.toString(),
+            scoreRange: `${Math.max(1, rank - 50)}-${rank + 50}`
+          });
+          
+          logger.info('获取排名成功', { rank, rankPercent: rank_percent });
+        } else {
+          logger.error('获取排名失败', res.data);
+        }
+      },
+      fail: (err) => {
+        logger.error('获取排名请求失败', err);
+      }
+    });
   }
 
   handleRankChange = (value: string) => {
@@ -165,9 +251,10 @@ export default class ExamInfo extends Component<{}, IState> {
       return
     }
     
+    // 位次现在是自动计算的，但仍然需要确保有值
     if (!this.state.rank) {
       Taro.showToast({
-        title: '请输入高考位次',
+        title: '请先输入分数，以便计算位次',
         icon: 'none'
       })
       return
@@ -353,15 +440,18 @@ export default class ExamInfo extends Component<{}, IState> {
             </View>
             
             <View className='form-item'>
-              <View className='label'>高考位次</View>
+              <View className='label'>
+                高考位次
+                <Text className='auto-label'>（自动计算）</Text>
+              </View>
               <View className='value'>
-                <View className='custom-input-wrapper'>
+                <View className='custom-input-wrapper readonly'>
                   <input
                     className='custom-input'
-                    type='number'
-                    placeholder='请输入位次'
+                    type='text'
+                    placeholder='分数输入后自动获取'
                     value={rank}
-                    onChange={(e) => this.handleRankChange(e.target.value)}
+                    readOnly
                   />
                 </View>
               </View>
@@ -377,7 +467,7 @@ export default class ExamInfo extends Component<{}, IState> {
           
           <View className='submit-container'>
             <AtButton type='primary' className='submit-btn' onClick={this.handleSubmit}>
-              完成
+              <View className='button-text-center'>完成</View>
             </AtButton>
           </View>
           
