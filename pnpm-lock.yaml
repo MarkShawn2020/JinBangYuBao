@@ -8,12 +8,12 @@ importers:
 
   .:
     dependencies:
-      '@antv/f2':
-        specifier: ^5.8.0
-        version: 5.8.0
       '@babel/runtime':
         specifier: ^7.7.7
         version: 7.27.1
+      '@react-native-picker/picker':
+        specifier: ~2.4.2
+        version: 2.4.10(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1)
       '@tarojs/components':
         specifier: 3.6.35
         version: 3.6.35(@tarojs/helper@3.6.35)(@tarojs/runtime@3.6.35(@tarojs/shared@3.6.35))(@tarojs/shared@3.6.35)(@types/react@18.2.0)(postcss@8.5.3)(react@18.3.1)
@@ -61,7 +61,7 @@ importers:
         version: 3.6.35(@tarojs/helper@3.6.35)(@tarojs/runtime@3.6.35(@tarojs/shared@3.6.35))(@types/react@18.2.0)(postcss@8.5.3)
       '@tarojs/taro-rn':
         specifier: 3.6.35
-        version: 3.6.35(70934494e50d1c4e65ac02b72b48fcc0)
+        version: 3.6.35(0bbb22d65190058ce0b0491f22bca91f)
       '@visactor/taro-vchart':
         specifier: ^1.13.10
         version: 1.13.10
@@ -82,7 +82,7 @@ importers:
         version: 2.2.0
       taro-ui:
         specifier: ^3.2.1
-        version: 3.3.0(0a33da8dd9682cc7027aee63280be2e7)
+        version: 3.3.0(958ea5007fd92f02dba1019a20345430)
     devDependencies:
       '@animaapp/vite-plugin-screen-graph':
         specifier: ^0.1.5
@@ -207,87 +207,6 @@ packages:
       '@react-native-community/slider': '>= 2.0.0'
       '@react-native-picker/picker': ^1.9.10
       react-native-gesture-handler: ^1.10.3
-
-  '@antv/event-emitter@0.1.3':
-    resolution: {integrity: sha512-4ddpsiHN9Pd4UIlWuKVK1C4IiZIdbwQvy9i7DUSI3xNJ89FPUFt8lxDYj8GzzfdllV0NkJTRxnG+FvLk0llidg==}
-
-  '@antv/f-engine@1.5.0':
-    resolution: {integrity: sha512-m4JUXEHTyNtSEBtaz71VJklK9PX54MJPHFNUCCEohwXdqw9STf0+RoU2ZAGLkUShR6puFahyapCX1RhmeLZDUA==}
-
-  '@antv/f-lottie@1.5.0':
-    resolution: {integrity: sha512-+aBrUXJ7V9dy+1jP4g3jXa5glBnTMdgvC58ca4w9FeQgxsvd1BnF22MWmTBD76wl70wVa5zFrP5hnmXcGGhd+Q==}
-
-  '@antv/f2@5.8.0':
-    resolution: {integrity: sha512-ngDNK4JYWK3reP/3UVlrn4vZOm0DsL1OEY4KlIVGZVhNoGflPmtCHYHms9UoEizUgTmxwVRd88ls8maLuZfVRQ==}
-
-  '@antv/g-device-api@1.6.13':
-    resolution: {integrity: sha512-lTvlSHYDZyWJnAR1W8DOQLwUo32VpRopbS/BPQqStcOV6FqaC+u5YjT50KbJ+oBWcorpzfknhICRwEA3Xm8t9Q==}
-
-  '@antv/g-gesture@2.2.27':
-    resolution: {integrity: sha512-IgZkA0gbMiGKG7V+RnYusmP9kMWKs2Uis6kRCfSBQIeiYYALHx/MdzBhdYZ88+Rcd62TGzbLsRkxz3gOZkUIvA==}
-
-  '@antv/g-lite@1.2.24':
-    resolution: {integrity: sha512-7FfySdANOtn2zKq41gbRj30KJ0TpnWDfyvAENVQ6Hbfqmst3/LP14rKwBmFTavjl3POdruf/dh4w6JX2gR/rUA==}
-
-  '@antv/g-lottie-player@0.2.24':
-    resolution: {integrity: sha512-6kVjBWMj7KMx1C1uMH4PlEMkJ7cjHp6iGYdYLah4Fg/xiOuIXpyxt0KykG/jnxn2VJ45vp1O8j8ZduYpevD6FA==}
-
-  '@antv/g-math@2.0.2':
-    resolution: {integrity: sha512-uqGU1C+70orjeSUoIzD3TuXjL5dRQCIyjZrBrTmm0FWd6VQJMWHyG5ypuZ2lMiI5MrRajVSE1w+3J4hiNBYSJg==}
-
-  '@antv/g-mobile-canvas-element@0.8.24':
-    resolution: {integrity: sha512-EoYbzaCiBHoCrQsLuuGsJ30nW4bFgs3M1EKlV4PuY33pYkguZiMtM3PX21Io9iZ2q9UmhMoBB6UCd2HqfrerxA==}
-
-  '@antv/g-mobile-canvas@0.11.17':
-    resolution: {integrity: sha512-aChugSuTsyf4xOCHx5W+C/3KyjZT1wrojIiORO1FiDjtuFUZreR+0/QSs9QnYr/CTmiV0OMVYwp6i7mb0S09Yw==}
-
-  '@antv/g-mobile-svg@0.10.29':
-    resolution: {integrity: sha512-8LCdhwXTOToYyxb3Ih7JZKsGLwVA66itztMFVXy2/cVtL0QKkXlVu19gXcKaWcqctxV4UA71PYW4jsY1jlNvvg==}
-
-  '@antv/g-mobile-webgl@0.9.40':
-    resolution: {integrity: sha512-TrnTL0zGdYk65tcJulGKYNdHUgv/wcuN1IzT4xCysZUYQaW8Lio5sHXPp+8hMsHUODLEC6vM8BcwYnDgARzPnA==}
-
-  '@antv/g-plugin-canvas-path-generator@1.3.24':
-    resolution: {integrity: sha512-+85VyXQCdR/8uo3TEk95GyxT2tiyEmnPHtPETVTCVgzuSeN/NQzLgByse65VQSejJG7a5SXygOaTHOBLmqbWCA==}
-
-  '@antv/g-plugin-canvas-picker@1.10.26':
-    resolution: {integrity: sha512-xP71wHNuGknzI20B6Tk2qCsNsEb/DtpQTtIkBqsRiG+hT+IVBFp5yQ1KE+4dkZQ4/6UqQlKDLb1eIVm7I8fyWg==}
-
-  '@antv/g-plugin-canvas-renderer@1.9.26':
-    resolution: {integrity: sha512-0rz1+7746MhQSJ/NJ7bbuxURv0A5/OvbM1SPXFh6w5geFJoU89uPK2dVG4IFz6x4kgcCkcjFdhXg7Oti3LOjNg==}
-
-  '@antv/g-plugin-device-renderer@1.9.36':
-    resolution: {integrity: sha512-pWCO4FjkK2dm1ZTBSpYwfJ+kfv4lHtnlxlVYLqgvuBvK+VuxQOUyK1g1yuq022roXToUWdd2xHSGJj78vliSuw==}
-
-  '@antv/g-plugin-dragndrop@1.8.24':
-    resolution: {integrity: sha512-muk2juDPnafWS6xYDVjQRnI+bOlG4k4jWOb8Fk6hKjDRxmXXiP1fz4lo8kn5QvsCKra9Gu08JlU7UNONFFBspQ==}
-
-  '@antv/g-plugin-gesture@1.2.12':
-    resolution: {integrity: sha512-xk01etWP7Q6+JhSJ0Cvtoe+aRw7gncXkQLI5k4U50boCpxf0EjtDJHVxpsCVW2uBEWPNfLTpof9MF+zCC1VtWQ==}
-
-  '@antv/g-plugin-html-renderer@1.9.27':
-    resolution: {integrity: sha512-sXdHH4qFlilAKmrdI5bIkP24uht7+d9Tej6GVuokFBu6KkGT89SROExHhssoybhcYY2KxTShEsaXF+yO6pBbeQ==}
-
-  '@antv/g-plugin-image-loader@1.3.24':
-    resolution: {integrity: sha512-M0grJ/GiYxUsBexakQCL7Wr1Uyg8BTdzmjgjDNKPzcF7tb5DrSVisZAy5jE+eRIE4ZqWylg0IUdJq/RFeds9jQ==}
-
-  '@antv/g-plugin-mobile-interaction@0.9.24':
-    resolution: {integrity: sha512-fyG0QvwnkNlQh8/ZlB7AiS5EZ3QOdXOB9T5ChEp8ymZADjXj91LagEHnJlAitz63uy6qvsMpg1r7ELWWnXHyvg==}
-
-  '@antv/g-plugin-svg-picker@1.9.28':
-    resolution: {integrity: sha512-nr+UW48r4VTNJtuhqtNUw/I/RGIzqHclDKVdcJuvygqNoTEKSSSeErnSVEWnKC/69IpOp8hZDa07WqPZPUC0Vg==}
-
-  '@antv/g-plugin-svg-renderer@1.10.28':
-    resolution: {integrity: sha512-9W3yXsxE+73sWGORCINIeT88xu9Gh5LZh49RdFLxC6kvhJNA5c4zHUoduTSFecMGpCgG4U/GaABCxgwk9osFbg==}
-
-  '@antv/g-shader-components@1.8.7':
-    resolution: {integrity: sha512-RzU2FxGoN0hS5r3SYNY9Yt4AhgNGGto+rMJLSv7HOBMcg1a85jLCUEbYHxhCX3akgJ5NSC6DX+zX1QLq0/AXYw==}
-
-  '@antv/g-web-animations-api@1.2.25':
-    resolution: {integrity: sha512-N6PA59OwjMxxL5axoOZeYdWNxmqErBvnjEiOWKq7xUqjaoyzz7/jRBBg5CtJ+IA+NNIRHOnMMEPPl4p8YCljRg==}
-
-  '@antv/util@3.3.10':
-    resolution: {integrity: sha512-basGML3DFA3O87INnzvDStjzS+n0JLEhRnRsDzP9keiXz8gT1z/fTdmJAZFOzMMWxy+HKbi7NbSt0+8vz/OsBQ==}
 
   '@ast-core/escape@1.0.1':
     resolution: {integrity: sha512-/kVjBkDzYrSW1S+gTBCuOfhnNkge9qZFJgLT+MOZdmPN4Vts36S60uU5br3ozoxpJ1eRGe6pGy7/EfcOpFFHlA==}
@@ -2100,6 +2019,12 @@ packages:
       react: '>=16'
       react-native: '>=0.57'
 
+  '@react-native-picker/picker@2.4.10':
+    resolution: {integrity: sha512-EvAlHmPEPOwvbP6Pjg/gtDV3XJzIjIxr10fXFNlX5r9HeHw582G1Zt2o8FLyB718nOttgj8HYUTGxvhu4N65sQ==}
+    peerDependencies:
+      react: '>=16'
+      react-native: '>=0.57'
+
   '@react-native/assets-registry@0.73.1':
     resolution: {integrity: sha512-2FgAbU7uKM5SbbW9QptPPZx8N9Ke2L7bsHb+EhAanZjFZunA9PaYtyjUQ1s7HD+zDVqOQIvjkpXSv7Kejd2tqg==}
     engines: {node: '>=18'}
@@ -3351,9 +3276,6 @@ packages:
 
   '@webassemblyjs/wast-printer@1.14.1':
     resolution: {integrity: sha512-kPSSXE6De1XOR820C90RIo2ogvZG+c3KiHzqUoO/F34Y2shGzesfqv7o57xrxovZJH/MetF5UjroJ/R/3isoiw==}
-
-  '@webgpu/types@0.1.60':
-    resolution: {integrity: sha512-8B/tdfRFKdrnejqmvq95ogp8tf52oZ51p3f4QD5m5Paey/qlX4Rhhy5Y8tgFMi7Ms70HzcMMw3EQjH/jdhTwlA==}
 
   '@xmldom/xmldom@0.7.13':
     resolution: {integrity: sha512-lm2GW5PkosIzccsaZIz7tp8cPADSIlIHWDFTR1N0SzfinhhYgeIQjFMz4rYzanCScr3DqQLeomUDArp6MWKm+g==}
@@ -4737,15 +4659,6 @@ packages:
   d3-array@1.2.4:
     resolution: {integrity: sha512-KHW6M86R+FUPYGb3R5XiYjXPq7VzwxZ22buHhAEVG5ztoEcZZMLov530mmccaqA1GghZArjQV46fuc8kUqhhHw==}
 
-  d3-cloud@1.2.7:
-    resolution: {integrity: sha512-8TrgcgwRIpoZYQp7s3fGB7tATWfhckRb8KcVd1bOgqkNdkJRDGWfdSf4HkHHzZxSczwQJdSxvfPudwir5IAJ3w==}
-
-  d3-color@1.4.1:
-    resolution: {integrity: sha512-p2sTHSLCJI2QKunbGb7ocOh7DgTAn8IrLx21QRc/BSnodXM4sv6aLQlnfpvehFMLZEfBc6g9pH9SWQccFYfJ9Q==}
-
-  d3-dispatch@1.0.6:
-    resolution: {integrity: sha512-fVjoElzjhCEy+Hbn8KygnmMS7Or0a9sI2UzGwoB7cCtvI1XpVN9GpoYlnb3xt2YV66oXYb1fLJ8GMvP4hdU1RA==}
-
   d3-dsv@2.0.0:
     resolution: {integrity: sha512-E+Pn8UJYx9mViuIUkoc93gJGGYut6mSDKy2+XaPwccwkRGlR+LO97L2VCCRjQivTwLHkSnAJG7yo00BWY6QM+w==}
     hasBin: true
@@ -5092,9 +5005,6 @@ packages:
 
   duplexer3@0.1.5:
     resolution: {integrity: sha512-1A8za6ws41LQgv9HrE/66jyC5yuSjQ3L/KOpFtoBilsAK2iA2wuS5rTt1OCzIvtS2V7nVmedsUU+DGRcjBmOYA==}
-
-  earcut@2.2.4:
-    resolution: {integrity: sha512-/pjZsA1b4RPHbeWZQn66SWS8nZZWLQQ23oE3Eam7aroEFGEvwKAsJfZ9ytiEMycfzXWpca4FA9QIOehf7PocBQ==}
 
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
@@ -5508,9 +5418,6 @@ packages:
   eventemitter3@4.0.7:
     resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
 
-  eventemitter3@5.0.1:
-    resolution: {integrity: sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==}
-
   events@3.3.0:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
     engines: {node: '>=0.8.x'}
@@ -5709,9 +5616,6 @@ packages:
 
   fd-slicer@1.1.0:
     resolution: {integrity: sha512-cE1qsB/VwyQozZ+q1dGxR8LBYNZeofhEdUNGSMbQD3Gw2lAzX9Zb3uIU6Ebc/Fmyjo9AWWfnn0AUCHqtevs/8g==}
-
-  fecha@4.2.3:
-    resolution: {integrity: sha512-OP2IUU6HeYKJi3i0z4A19kHMQoLVs4Hc+DPqqxI2h/DPZHTm/vjsfC6P0b4jCMy14XizLBqvndQ+UilD7707Jw==}
 
   fetch-retry@4.1.1:
     resolution: {integrity: sha512-e6eB7zN6UBSwGVwrbWVH+gdLnkW9WwHhmq2YDK1Sh30pzx1onRVGBvogTlUeWxwTa+L86NYdo4hFkh7O8ZjSnA==}
@@ -6052,9 +5956,6 @@ packages:
   giturl@1.0.3:
     resolution: {integrity: sha512-qVDEXufVtYUzYqI5hoDUONh9GCEPi0n+e35KNDafdsNt9fPxB0nvFW/kFiw7W42wkg8TUyhBqb+t24yyaoc87A==}
     engines: {node: '>= 0.10.0'}
-
-  gl-matrix@3.4.3:
-    resolution: {integrity: sha512-wcCp8vu8FT22BnvKVPjXa/ICBWRq/zjFfdofZy1WSpQZpphblv12/bOQLBC1rMM7SGOFS9ltVmKOHil5+Ml7gA==}
 
   glob-base@0.3.0:
     resolution: {integrity: sha512-ab1S1g1EbO7YzauaJLkgLp7DZVAqj9M/dvKlTt8DkXA2tiOIcSMrlVI2J1RZyB5iJVccEscjGn+kpOG9788MHA==}
@@ -9101,9 +9002,6 @@ packages:
     resolution: {integrity: sha512-ARhCpm70fzdcvNQfPoy49IaanKkTlRWF2JMzqhcJbhSFRZv7nPTvZJdcY7301IPmvW+/p0RgIWnQDLJxifsQ7g==}
     engines: {node: '>=8'}
 
-  quickselect@2.0.0:
-    resolution: {integrity: sha512-RKJ22hX8mHe3Y6wH/N3wCM6BWtjaxIyyUIkpHOvfFnxdI4yD4tBXEBKSbriGujF6jnSVkJrffuo6vxACiSSxIw==}
-
   randomatic@3.1.1:
     resolution: {integrity: sha512-TuDE5KxZ0J461RVjrJZCJc+J+zCkTb1MbH9AQUq68sMhOMcy9jLcb3BrZKgp9q9Ncltdg4QVqWrH02W2EFFVYw==}
     engines: {node: '>= 0.10.0'}
@@ -9118,9 +9016,6 @@ packages:
   raw-body@2.5.2:
     resolution: {integrity: sha512-8zGqypfENjCIqGhgXToC8aB2r7YrBX+AQAfIPs/Mlk+BtPTztOvTS01NRW/3Eh60J+a48lt8qsCzirQ6loCVfA==}
     engines: {node: '>= 0.8'}
-
-  rbush@3.0.1:
-    resolution: {integrity: sha512-XRaVO0YecOpEuIvbhbpTrZgoiI6xBlz6hnlr6EHhd+0x9ase6EmeN+hdwwUaJvLcsFFQ8iWVF1GAK1yB0BWi0w==}
 
   rc-config-loader@4.1.3:
     resolution: {integrity: sha512-kD7FqML7l800i6pS6pvLyIE2ncbk9Du8Q0gp/4hMPhJU6ZxApkoLcGD8ZeqgiAlfwZ6BlETq6qqe+12DUL207w==}
@@ -11328,13 +11223,14 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  '@ant-design/react-native@5.0.0(@babel/preset-env@7.27.2(@babel/core@7.27.1))(@react-native-community/cameraroll@4.1.2(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(@react-native-community/segmented-control@2.2.2(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(@react-native-community/slider@4.4.2)(react-native-gesture-handler@2.14.1(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1)(typescript@4.9.5)':
+  '@ant-design/react-native@5.0.0(@babel/preset-env@7.27.2(@babel/core@7.27.1))(@react-native-community/cameraroll@4.1.2(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(@react-native-community/segmented-control@2.2.2(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(@react-native-community/slider@4.4.2)(@react-native-picker/picker@2.4.10(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(react-native-gesture-handler@2.14.1(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1)(typescript@4.9.5)':
     dependencies:
       '@ant-design/icons-react-native': 2.3.2(react@18.3.1)
       '@bang88/react-native-ultimate-listview': 4.1.1
       '@react-native-community/cameraroll': 4.1.2(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1)
       '@react-native-community/segmented-control': 2.2.2(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1)
       '@react-native-community/slider': 4.4.2
+      '@react-native-picker/picker': 2.4.10(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1)
       '@types/shallowequal': 1.1.5
       array-tree-filter: 2.1.0
       babel-runtime: 6.26.0
@@ -11352,219 +11248,6 @@ snapshots:
       - react-native
       - supports-color
       - typescript
-
-  '@antv/event-emitter@0.1.3': {}
-
-  '@antv/f-engine@1.5.0':
-    dependencies:
-      '@antv/g-gesture': 2.2.27
-      '@antv/g-lite': 1.2.24
-      '@antv/g-mobile-canvas': 0.11.17
-      '@antv/g-mobile-canvas-element': 0.8.24
-      '@antv/g-mobile-svg': 0.10.29
-      '@antv/g-mobile-webgl': 0.9.40
-      '@antv/g-web-animations-api': 1.2.25
-      '@antv/util': 3.3.10
-      '@babel/runtime': 7.27.1
-      eventemitter3: 4.0.7
-      tslib: 2.8.1
-
-  '@antv/f-lottie@1.5.0':
-    dependencies:
-      '@antv/f-engine': 1.5.0
-      '@antv/g-lottie-player': 0.2.24
-      '@babel/runtime': 7.27.1
-      tslib: 2.8.1
-
-  '@antv/f2@5.8.0':
-    dependencies:
-      '@antv/event-emitter': 0.1.3
-      '@antv/f-engine': 1.5.0
-      '@antv/f-lottie': 1.5.0
-      '@antv/util': 3.3.10
-      '@babel/runtime': 7.27.1
-      d3-cloud: 1.2.7
-      fecha: 4.2.3
-      gl-matrix: 3.4.3
-      tslib: 2.8.1
-      type-fest: 3.13.1
-
-  '@antv/g-device-api@1.6.13':
-    dependencies:
-      '@antv/util': 3.3.10
-      '@webgpu/types': 0.1.60
-      eventemitter3: 5.0.1
-      gl-matrix: 3.4.3
-      tslib: 2.8.1
-
-  '@antv/g-gesture@2.2.27':
-    dependencies:
-      '@antv/g-lite': 1.2.24
-      eventemitter3: 5.0.1
-      tslib: 2.8.1
-
-  '@antv/g-lite@1.2.24':
-    dependencies:
-      '@antv/g-math': 2.0.2
-      '@antv/util': 3.3.10
-      d3-color: 1.4.1
-      eventemitter3: 5.0.1
-      gl-matrix: 3.4.3
-      rbush: 3.0.1
-      tslib: 2.8.1
-
-  '@antv/g-lottie-player@0.2.24':
-    dependencies:
-      '@antv/g-lite': 1.2.24
-      '@antv/util': 3.3.10
-      tslib: 2.8.1
-
-  '@antv/g-math@2.0.2':
-    dependencies:
-      '@antv/util': 3.3.10
-      gl-matrix: 3.4.3
-      tslib: 2.8.1
-
-  '@antv/g-mobile-canvas-element@0.8.24':
-    dependencies:
-      '@antv/g-lite': 1.2.24
-      eventemitter3: 5.0.1
-      tslib: 2.8.1
-
-  '@antv/g-mobile-canvas@0.11.17':
-    dependencies:
-      '@antv/g-lite': 1.2.24
-      '@antv/g-plugin-canvas-path-generator': 1.3.24
-      '@antv/g-plugin-canvas-picker': 1.10.26
-      '@antv/g-plugin-canvas-renderer': 1.9.26
-      '@antv/g-plugin-dragndrop': 1.8.24
-      '@antv/g-plugin-gesture': 1.2.12
-      '@antv/g-plugin-image-loader': 1.3.24
-      '@antv/g-plugin-mobile-interaction': 0.9.24
-      '@antv/util': 3.3.10
-      tslib: 2.8.1
-
-  '@antv/g-mobile-svg@0.10.29':
-    dependencies:
-      '@antv/g-lite': 1.2.24
-      '@antv/g-plugin-dragndrop': 1.8.24
-      '@antv/g-plugin-gesture': 1.2.12
-      '@antv/g-plugin-mobile-interaction': 0.9.24
-      '@antv/g-plugin-svg-picker': 1.9.28
-      '@antv/g-plugin-svg-renderer': 1.10.28
-      '@antv/util': 3.3.10
-      tslib: 2.8.1
-
-  '@antv/g-mobile-webgl@0.9.40':
-    dependencies:
-      '@antv/g-device-api': 1.6.13
-      '@antv/g-lite': 1.2.24
-      '@antv/g-plugin-device-renderer': 1.9.36
-      '@antv/g-plugin-dragndrop': 1.8.24
-      '@antv/g-plugin-gesture': 1.2.12
-      '@antv/g-plugin-html-renderer': 1.9.27
-      '@antv/g-plugin-image-loader': 1.3.24
-      '@antv/g-plugin-mobile-interaction': 0.9.24
-      '@antv/util': 3.3.10
-      tslib: 2.8.1
-
-  '@antv/g-plugin-canvas-path-generator@1.3.24':
-    dependencies:
-      '@antv/g-lite': 1.2.24
-      '@antv/g-math': 2.0.2
-      '@antv/util': 3.3.10
-      tslib: 2.8.1
-
-  '@antv/g-plugin-canvas-picker@1.10.26':
-    dependencies:
-      '@antv/g-lite': 1.2.24
-      '@antv/g-math': 2.0.2
-      '@antv/g-plugin-canvas-path-generator': 1.3.24
-      '@antv/g-plugin-canvas-renderer': 1.9.26
-      '@antv/util': 3.3.10
-      gl-matrix: 3.4.3
-      tslib: 2.8.1
-
-  '@antv/g-plugin-canvas-renderer@1.9.26':
-    dependencies:
-      '@antv/g-lite': 1.2.24
-      '@antv/g-math': 2.0.2
-      '@antv/g-plugin-canvas-path-generator': 1.3.24
-      '@antv/g-plugin-image-loader': 1.3.24
-      '@antv/util': 3.3.10
-      gl-matrix: 3.4.3
-      tslib: 2.8.1
-
-  '@antv/g-plugin-device-renderer@1.9.36':
-    dependencies:
-      '@antv/g-device-api': 1.6.13
-      '@antv/g-lite': 1.2.24
-      '@antv/g-math': 2.0.2
-      '@antv/g-plugin-image-loader': 1.3.24
-      '@antv/g-shader-components': 1.8.7
-      '@antv/util': 3.3.10
-      '@webgpu/types': 0.1.60
-      earcut: 2.2.4
-      eventemitter3: 5.0.1
-      gl-matrix: 3.4.3
-      tslib: 2.8.1
-
-  '@antv/g-plugin-dragndrop@1.8.24':
-    dependencies:
-      '@antv/g-lite': 1.2.24
-      '@antv/util': 3.3.10
-      tslib: 2.8.1
-
-  '@antv/g-plugin-gesture@1.2.12':
-    dependencies:
-      '@antv/g-lite': 1.2.24
-      tslib: 2.8.1
-
-  '@antv/g-plugin-html-renderer@1.9.27':
-    dependencies:
-      '@antv/g-lite': 1.2.24
-      '@antv/util': 3.3.10
-      gl-matrix: 3.4.3
-      tslib: 2.8.1
-
-  '@antv/g-plugin-image-loader@1.3.24':
-    dependencies:
-      '@antv/g-lite': 1.2.24
-      '@antv/util': 3.3.10
-      gl-matrix: 3.4.3
-      tslib: 2.8.1
-
-  '@antv/g-plugin-mobile-interaction@0.9.24':
-    dependencies:
-      '@antv/g-lite': 1.2.24
-      tslib: 2.8.1
-
-  '@antv/g-plugin-svg-picker@1.9.28':
-    dependencies:
-      '@antv/g-lite': 1.2.24
-      '@antv/g-plugin-svg-renderer': 1.10.28
-      tslib: 2.8.1
-
-  '@antv/g-plugin-svg-renderer@1.10.28':
-    dependencies:
-      '@antv/g-lite': 1.2.24
-      '@antv/util': 3.3.10
-      gl-matrix: 3.4.3
-      tslib: 2.8.1
-
-  '@antv/g-shader-components@1.8.7': {}
-
-  '@antv/g-web-animations-api@1.2.25':
-    dependencies:
-      '@antv/g-lite': 1.2.24
-      '@antv/util': 3.3.10
-      tslib: 2.8.1
-
-  '@antv/util@3.3.10':
-    dependencies:
-      fast-deep-equal: 3.1.3
-      gl-matrix: 3.4.3
-      tslib: 2.8.1
 
   '@ast-core/escape@1.0.1': {}
 
@@ -13573,6 +13256,11 @@ snapshots:
       react: 18.3.1
       react-native: 0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1)
 
+  '@react-native-picker/picker@2.4.10(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+      react-native: 0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1)
+
   '@react-native/assets-registry@0.73.1': {}
 
   '@react-native/assets-registry@0.79.2': {}
@@ -14102,10 +13790,11 @@ snapshots:
       - postcss
       - vue
 
-  '@tarojs/components-rn@3.6.35(53f93ce03ae7b893333c9df263415f70)':
+  '@tarojs/components-rn@3.6.35(c21c596cd4cd40cecf6e9e0c18a3852b)':
     dependencies:
-      '@ant-design/react-native': 5.0.0(@babel/preset-env@7.27.2(@babel/core@7.27.1))(@react-native-community/cameraroll@4.1.2(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(@react-native-community/segmented-control@2.2.2(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(@react-native-community/slider@4.4.2)(react-native-gesture-handler@2.14.1(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1)(typescript@4.9.5)
+      '@ant-design/react-native': 5.0.0(@babel/preset-env@7.27.2(@babel/core@7.27.1))(@react-native-community/cameraroll@4.1.2(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(@react-native-community/segmented-control@2.2.2(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(@react-native-community/slider@4.4.2)(@react-native-picker/picker@2.4.10(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(react-native-gesture-handler@2.14.1(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1)(typescript@4.9.5)
       '@react-native-community/slider': 4.4.2
+      '@react-native-picker/picker': 2.4.10(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1)
       '@tarojs/router-rn': 3.6.35(@react-native-masked-view/masked-view@0.2.9(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(react-native-gesture-handler@2.14.1(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(react-native-safe-area-context@4.8.2(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(react-native-screens@3.29.0(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1)
       expo: 50.0.21(@babel/core@7.27.1)(@react-native/babel-preset@0.73.21(@babel/core@7.27.1)(@babel/preset-env@7.27.2(@babel/core@7.27.1)))(encoding@0.1.13)(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1)
       expo-av: 13.10.6(expo@50.0.21(@babel/core@7.27.1)(@react-native/babel-preset@0.73.21(@babel/core@7.27.1)(@babel/preset-env@7.27.2(@babel/core@7.27.1)))(encoding@0.1.13)(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))
@@ -14442,9 +14131,9 @@ snapshots:
       - '@swc/helpers'
       - supports-color
 
-  '@tarojs/runtime-rn@3.6.35(d1dee8dd81373d448ade8b13885d3ec1)':
+  '@tarojs/runtime-rn@3.6.35(a4d1146fa6c535a011189956ddb644f2)':
     dependencies:
-      '@tarojs/components-rn': 3.6.35(53f93ce03ae7b893333c9df263415f70)
+      '@tarojs/components-rn': 3.6.35(c21c596cd4cd40cecf6e9e0c18a3852b)
       '@tarojs/router-rn': 3.6.35(@react-native-masked-view/masked-view@0.2.9(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(react-native-gesture-handler@2.14.1(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(react-native-safe-area-context@4.8.2(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(react-native-screens@3.29.0(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1))(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1)
       '@tarojs/shared': 3.6.35
       react-native-device-info: 14.0.4(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))
@@ -14553,7 +14242,7 @@ snapshots:
       - supports-color
       - vue
 
-  '@tarojs/taro-rn@3.6.35(70934494e50d1c4e65ac02b72b48fcc0)':
+  '@tarojs/taro-rn@3.6.35(0bbb22d65190058ce0b0491f22bca91f)':
     dependencies:
       '@bam.tech/react-native-image-resizer': 3.0.11(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1)
       '@react-native-async-storage/async-storage': 1.21.0(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))
@@ -14561,7 +14250,7 @@ snapshots:
       '@react-native-clipboard/clipboard': 1.16.2(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1)
       '@react-native-community/geolocation': 3.4.0(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))(react@18.3.1)
       '@react-native-community/netinfo': 11.1.0(react-native@0.79.2(@babel/core@7.27.1)(@types/react@18.2.0)(react@18.3.1))
-      '@tarojs/runtime-rn': 3.6.35(d1dee8dd81373d448ade8b13885d3ec1)
+      '@tarojs/runtime-rn': 3.6.35(a4d1146fa6c535a011189956ddb644f2)
       babel-preset-expo: 9.2.2(@babel/core@7.27.1)
       base64-js: 1.5.1
       deprecated-react-native-prop-types: 2.3.0
@@ -15550,8 +15239,6 @@ snapshots:
     dependencies:
       '@webassemblyjs/ast': 1.14.1
       '@xtuc/long': 4.2.2
-
-  '@webgpu/types@0.1.60': {}
 
   '@xmldom/xmldom@0.7.13': {}
 
@@ -17049,14 +16736,6 @@ snapshots:
 
   d3-array@1.2.4: {}
 
-  d3-cloud@1.2.7:
-    dependencies:
-      d3-dispatch: 1.0.6
-
-  d3-color@1.4.1: {}
-
-  d3-dispatch@1.0.6: {}
-
   d3-dsv@2.0.0:
     dependencies:
       commander: 2.20.3
@@ -17440,8 +17119,6 @@ snapshots:
       gopd: 1.2.0
 
   duplexer3@0.1.5: {}
-
-  earcut@2.2.4: {}
 
   eastasianwidth@0.2.0: {}
 
@@ -18018,8 +17695,6 @@ snapshots:
 
   eventemitter3@4.0.7: {}
 
-  eventemitter3@5.0.1: {}
-
   events@3.3.0: {}
 
   exec-async@2.2.0: {}
@@ -18334,8 +18009,6 @@ snapshots:
   fd-slicer@1.1.0:
     dependencies:
       pend: 1.2.0
-
-  fecha@4.2.3: {}
 
   fetch-retry@4.1.1: {}
 
@@ -18706,8 +18379,6 @@ snapshots:
   git-clone@0.1.0: {}
 
   giturl@1.0.3: {}
-
-  gl-matrix@3.4.3: {}
 
   glob-base@0.3.0:
     dependencies:
@@ -21601,7 +21272,7 @@ snapshots:
     dependencies:
       htmlparser2: 3.10.1
       postcss: 6.0.23
-      postcss-syntax: 0.28.0(postcss-html@0.28.0)(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.5.3))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23)
+      postcss-syntax: 0.28.0(postcss-html@0.28.0(postcss-syntax@0.28.0(postcss@8.5.3))(postcss@6.0.23))(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.5.3))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23)
 
   postcss-image-set-function@7.0.0(postcss@8.5.3):
     dependencies:
@@ -21667,7 +21338,7 @@ snapshots:
   postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.5.3))(postcss@6.0.23):
     dependencies:
       postcss: 6.0.23
-      postcss-syntax: 0.28.0(postcss-html@0.28.0)(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.5.3))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23)
+      postcss-syntax: 0.28.0(postcss-html@0.28.0(postcss-syntax@0.28.0(postcss@8.5.3))(postcss@6.0.23))(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.5.3))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23)
       remark: 9.0.0
       unist-util-find-all-after: 1.0.5
 
@@ -21960,7 +21631,7 @@ snapshots:
       postcss-value-parser: 4.2.0
       svgo: 2.8.0
 
-  postcss-syntax@0.28.0(postcss-html@0.28.0)(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.5.3))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23):
+  postcss-syntax@0.28.0(postcss-html@0.28.0(postcss-syntax@0.28.0(postcss@8.5.3))(postcss@6.0.23))(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.5.3))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23):
     dependencies:
       postcss: 6.0.23
     optionalDependencies:
@@ -22164,8 +21835,6 @@ snapshots:
 
   quick-lru@4.0.1: {}
 
-  quickselect@2.0.0: {}
-
   randomatic@3.1.1:
     dependencies:
       is-number: 4.0.0
@@ -22184,10 +21853,6 @@ snapshots:
       http-errors: 2.0.0
       iconv-lite: 0.4.24
       unpipe: 1.0.0
-
-  rbush@3.0.1:
-    dependencies:
-      quickselect: 2.0.0
 
   rc-config-loader@4.1.3:
     dependencies:
@@ -23480,7 +23145,7 @@ snapshots:
       postcss-sass: 0.3.5
       postcss-scss: 1.0.6
       postcss-selector-parser: 3.1.2
-      postcss-syntax: 0.28.0(postcss-html@0.28.0)(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.5.3))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23)
+      postcss-syntax: 0.28.0(postcss-html@0.28.0(postcss-syntax@0.28.0(postcss@8.5.3))(postcss@6.0.23))(postcss-less@2.0.0)(postcss-markdown@0.28.0(postcss-syntax@0.28.0(postcss@8.5.3))(postcss@6.0.23))(postcss-scss@1.0.6)(postcss@6.0.23)
       postcss-value-parser: 3.3.1
       resolve-from: 4.0.0
       signal-exit: 3.0.7
@@ -23681,7 +23346,7 @@ snapshots:
     dependencies:
       wolfy87-eventemitter: 5.2.9
 
-  taro-ui@3.3.0(0a33da8dd9682cc7027aee63280be2e7):
+  taro-ui@3.3.0(958ea5007fd92f02dba1019a20345430):
     dependencies:
       '@tarojs/components': 3.6.35(@tarojs/helper@3.6.35)(@tarojs/runtime@3.6.35(@tarojs/shared@3.6.35))(@tarojs/shared@3.6.35)(@types/react@18.2.0)(postcss@8.5.3)(react@18.3.1)
       '@tarojs/plugin-platform-alipay': 3.6.35(@tarojs/components@3.6.35(@tarojs/helper@3.6.35)(@tarojs/runtime@3.6.35(@tarojs/shared@3.6.35))(@tarojs/shared@3.6.35)(@types/react@18.2.0)(postcss@8.5.3)(react@18.3.1))(@tarojs/taro@3.6.35(@tarojs/helper@3.6.35)(@tarojs/runtime@3.6.35(@tarojs/shared@3.6.35))(@types/react@18.2.0)(postcss@8.5.3))
@@ -23693,7 +23358,7 @@ snapshots:
       '@tarojs/plugin-platform-weapp': 3.6.35(@tarojs/components@3.6.35(@tarojs/helper@3.6.35)(@tarojs/runtime@3.6.35(@tarojs/shared@3.6.35))(@tarojs/shared@3.6.35)(@types/react@18.2.0)(postcss@8.5.3)(react@18.3.1))(@tarojs/shared@3.6.35)(@tarojs/taro@3.6.35(@tarojs/helper@3.6.35)(@tarojs/runtime@3.6.35(@tarojs/shared@3.6.35))(@types/react@18.2.0)(postcss@8.5.3))
       '@tarojs/react': 3.6.35(@tarojs/runtime@3.6.35(@tarojs/shared@3.6.35))(@tarojs/shared@3.6.35)(react@18.3.1)
       '@tarojs/taro': 3.6.35(@tarojs/helper@3.6.35)(@tarojs/runtime@3.6.35(@tarojs/shared@3.6.35))(@types/react@18.2.0)(postcss@8.5.3)
-      '@tarojs/taro-rn': 3.6.35(70934494e50d1c4e65ac02b72b48fcc0)
+      '@tarojs/taro-rn': 3.6.35(0bbb22d65190058ce0b0491f22bca91f)
       classnames: 2.5.1
       dayjs: 1.11.13
       lodash: 4.17.15
@@ -23967,7 +23632,8 @@ snapshots:
 
   type-fest@2.19.0: {}
 
-  type-fest@3.13.1: {}
+  type-fest@3.13.1:
+    optional: true
 
   type-is@1.6.18:
     dependencies:

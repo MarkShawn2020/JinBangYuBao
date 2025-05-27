@@ -36,8 +36,8 @@
   ],
   "author": "",
   "dependencies": {
-    "@antv/f2": "^5.8.0",
     "@babel/runtime": "^7.7.7",
+    "@react-native-picker/picker": "~2.4.2",
     "@tarojs/components": "3.6.35",
     "@tarojs/helper": "3.6.35",
     "@tarojs/plugin-framework-react": "3.6.35",
